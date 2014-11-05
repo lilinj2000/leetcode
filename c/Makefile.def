@@ -1,0 +1,60 @@
+CC=g++
+AR=ar 
+CFLAG=-g -Wall $(HEADER_INCLUDE)
+LIB= $(LIBRARY_PATH) $(LIBRARY_FILES)
+CPP_SRC=$(wildcard *.cpp)
+HEAD_SRC=$(wildcard *.h)
+OBJ=$(CPP_SRC:%.cpp=%.o)
+DEPENDENCY_OPTIONS = -MM
+# Dependencies
+DEPENDENCIES = $(patsubst %.cpp, %.d, $(CPP_SRC))
+
+DIRS = $(SUBDIRS)
+BUILDDIRS = $(DIRS:%=build-%)
+INSTALLDIRS = $(DIRS:%=install-%)
+CLEANDIRS = $(DIRS:%=clean-%)
+TESTDIRS = $(DIRS:%=test-%)
+
+all: ${DEPENDENCIES} ${BIN} ${STATIC_LIB} ${DYNAMIC_LIB}
+
+# Create .d files
+%.d: %.cpp
+	$(CC) $(DEPENDENCY_OPTIONS) $< -o $@
+
+# Include dependencies (if there are any)
+ifneq "$(strip $(DEPENDENCIES))" ""
+ -include $(DEPENDENCIES)
+endif
+
+%.o: %.cpp
+	${CC} -c ${CFLAG} $< -o $@ 
+
+${BIN}: ${OBJ} ${HEAD_SRC}
+	${CC} -o $@ ${OBJ} ${CFLAG} ${LIB}
+
+${STATIC_LIB}: ${OBJ} ${HEAD_SRC}
+	${AR} -cvq $@ ${OBJ}  
+
+${DYNAMIC_LIB}: ${CPP_SRC} ${HEAD_SRC}
+	${CC} -fPIC -c ${CPP_SRC} ${CFLAG}
+	${CC} -shared -o $@ ${OBJ} 
+
+clean:
+	rm -f ${BIN} ${OBJ} ${STATIC_LIB} ${DYNAMIC_LIB} ${DEPENDENCIES}
+
+all: $(BUILDDIRS)
+$(BUILDDIRS):
+	$(MAKE) -C $(@:build-%=%)
+
+clean: $(CLEANDIRS)
+$(CLEANDIRS):
+	$(MAKE) -C $(@:clean-%=%) clean
+
+subdirs: $(SUBDIRS)
+
+.PHONY: subdirs $(DIRS)
+.PHONY: subdirs $(BUILDDIRS)
+.PHONY: subdirs $(INISTALLDIRS)
+.PHONY: subdirs $(TESTDIRS)
+.PHONY: subdirs $(CLEANDIRS)
+.PHONY: all install clean test
