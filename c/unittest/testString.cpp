@@ -117,5 +117,55 @@ void object::test<2>()
 
 }
 
+/**
+ * Checks atoi
+ */
+template<>
+template<>
+void object::test<3>()
+{
+  std::string str;
+
+  // support integer with sign
+  str= "+560";
+  ensure( 560 == mString.atoi(str.data()) );
+  
+  str = "-100";
+  ensure( -100 == mString.atoi(str.data()) );
+
+  // support whitespace on the left or the right
+  str = "    100   ";
+  ensure( 100 == mString.atoi(str.data()) );
+
+  // support the addional characters and ignore it.
+  str = "100abc345";
+  ensure( 100 == mString.atoi(str.data()) );
+  
+  // return zero in case the first non-whitespace is not a valid integral data
+  str = "a1000";
+  ensure( 0 == mString.atoi(str.data()) );
+
+  // return zero in case empty string or the only whitespace
+  str = "";
+  ensure( 0 == mString.atoi(str.data()) );
+  
+  str = "    ";
+  ensure( 0 == mString.atoi(str.data()) );
+  
+  // return INT_MAX in case out of range INT_MAX(2147483647)
+  str = "2147483647";
+  ensure( 2147483647 == mString.atoi(str.data()) );
+  
+  str = "2147483648";
+  ensure( 2147483647 == mString.atoi(str.data()) );
+
+  // return INT_MIN in case out of range INT_MIN(-2147483648)
+  str = "-2147483648";
+  ensure( -2147483648 == mString.atoi(str.data()) );
+  
+  str = "-2147483649";
+  ensure( -2147483648 == mString.atoi(str.data()) );
+}
+
 }
 

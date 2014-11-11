@@ -9,4 +9,7 @@ public:
   bool isWildMatch(const char *s, const char *p);
 
   std::string countAndSay(int n);
+
+
+  int atoi(const char *str);
 };

@@ -135,3 +135,59 @@ std::string String::countAndSay(int n)
   
   return result;
 }
+
+int String::atoi(const char *str)
+{
+  if( !str )
+    return 0;
+
+  // 1. check the whitespace
+  int i=0;
+  for(; i<strlen(str); i++)
+  {
+    if( !isspace(str[i]) )
+        break;
+  }
+
+  // 2. check the sign '+' or '-'
+  int sign = 1;
+  switch( str[i] )
+  {
+    case '\0':
+      return 0; //only the white-space
+    case '+':
+      sign = 1;
+      i++;
+      break;
+      
+    case '-':
+      sign = -1;
+      i++;
+      break;
+  };
+
+
+  long long result = 0;
+  for(; i<strlen(str); i++)
+  {
+    // 3. check the digit data '0-9' or the other
+    if( !isdigit(str[i]) )
+      break;
+    int d = str[i] - '0';
+    
+    result = result * 10 + d;
+  }
+
+  result *= sign;
+
+  // 4. check oute of range int_max or the int_min
+  int int_max = 2147483647;
+  int int_min = -2147483648;
+
+  if( result>int_max)
+    result = int_max;
+  else if( result<int_min )
+    result = int_min;
+  
+  return result;
+}
