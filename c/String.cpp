@@ -168,26 +168,31 @@ int String::atoi(const char *str)
 
 
   long long result = 0;
+  int int_max = 2147483647;
+  int int_min = -2147483648;
   for(; i<strlen(str); i++)
   {
     // 3. check the digit data '0-9' or the other
     if( !isdigit(str[i]) )
       break;
     int d = str[i] - '0';
-    
+
+    // 4. check out of range int_max or the int_min
     result = result * 10 + d;
+
+    long long tmpResult = result*sign;
+    if( tmpResult>=int_max)
+    {
+      return int_max;
+    }
+    else if( tmpResult<=int_min )
+    {
+      return int_min;
+    }
+
   }
 
   result *= sign;
 
-  // 4. check oute of range int_max or the int_min
-  int int_max = 2147483647;
-  int int_min = -2147483648;
-
-  if( result>int_max)
-    result = int_max;
-  else if( result<int_min )
-    result = int_min;
-  
   return result;
 }
