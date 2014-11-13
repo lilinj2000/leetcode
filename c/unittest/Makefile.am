@@ -16,7 +16,7 @@ testLeetCode_LDADD = ../src/libleetcode.a
 #leetcode_a_LDFLAGS = 
 
 # header files
-include_HEADERS = 
+include_HEADERS = ./include
 
 # data files
 #data_DATA = data1 data2

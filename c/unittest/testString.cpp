@@ -34,9 +34,9 @@ template<>
 template<>
 void object::test<1>()
 {
-  char* s = "ppp";
-  char* p = s;
-  ensure( mString.isWildMatch(s, p) );
+  std::string s = "ppp";
+  std::string p = s;
+  ensure( mString.isWildMatch(s.data(), p.data()) );
 
   // s = "aa";
   // p = "a";
@@ -165,6 +165,28 @@ void object::test<3>()
   
   str = "-2147483649";
   ensure( -2147483648 == mString.atoi(str.data()) );
+}
+
+/**
+ * Checks isPalindrome
+ */
+template<>
+template<>
+void object::test<4>()
+{
+  std::string str;
+
+  str= "A man, a plan, a canal: Panama";
+  ensure( mString.isPalindrome(str) );
+  
+  str = "race a car";
+  ensure( !mString.isPalindrome(str) );
+
+  str = "r123321r";
+  ensure( mString.isPalindrome(str) );
+
+  str = "";
+  ensure( mString.isPalindrome(str) );
 }
 
 }

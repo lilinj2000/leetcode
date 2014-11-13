@@ -10,6 +10,7 @@ public:
 
   std::string countAndSay(int n);
 
-
   int atoi(const char *str);
+
+  bool isPalindrome(std::string s);
 };

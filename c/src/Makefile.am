@@ -17,7 +17,7 @@ libleetcode_a_SOURCES = Tree.cpp String.cpp Number.cpp
 #leetcode_a_LDFLAGS = 
 
 # header files
-#include_HEADERS = 
+include_HEADERS = Tree.h String.h Number.h
 
 # data files
 #data_DATA = data1 data2

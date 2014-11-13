@@ -1,24 +1,15 @@
-#include <string.h>
-#include <iostream>
 #include <stdio.h>
+
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <algorithm>
+#include <cctype>
 #include "String.h"
 
-// isMatch("aa","a") → false
-// isMatch("aa","aa") → true
-// isMatch("aaa","aa") → false
-// isMatch("aa", "a*") → true
-// isMatch("aa", ".*") → true
-// isMatch("ab", ".*") → true
-// isMatch("aab", "c*a*b") → true
 
-// wildcard match for string
-// isMatch("aa","a") → false
-// isMatch("aa","aa") → true
-// isMatch("aaa","aa") → false
-// isMatch("aa", "*") → true
-// isMatch("aa", "a*") → true
-// isMatch("ab", "?*") → true
-// isMatch("aab", "c*a*b") → false
+#define log(s) std::cerr <<"[String] " <<s <<std::endl;
+
 bool String::isWildMatch(const char *s, const char*p)
 {
   if( s==p )
@@ -195,4 +186,27 @@ int String::atoi(const char *str)
   result *= sign;
 
   return result;
+}
+
+bool String::isPalindrome(std::string s)
+{
+  if( s.empty() )
+    return true;
+
+  // ignore the none alphanumeric
+  int j=0;
+  for(int i=0; i<s.length(); i++)
+  {
+    if( isalnum(s[i]) )
+      s[j++] = s[i];
+  }
+  s.erase(s.begin()+j, s.end());
+  
+  std::transform(s.begin(), s.end(), s.begin(), toupper);
+  
+  // reverse the string
+  std::string r(s.rbegin(), s.rend());
+
+  // compare the two strings
+  return s==r;
 }
