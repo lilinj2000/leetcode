@@ -1,6 +1,6 @@
 #include <tut/tut.hpp>
 #include <string.h>
-#include "../Number.h"
+#include "Number.h"
 
 
 namespace tut

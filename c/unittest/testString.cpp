@@ -1,6 +1,6 @@
 #include <tut/tut.hpp>
 #include <string.h>
-#include "../String.h"
+#include "String.h"
 
 
 namespace tut

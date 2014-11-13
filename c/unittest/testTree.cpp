@@ -1,5 +1,5 @@
 #include <tut/tut.hpp>
-#include "../Tree.h"
+#include "Tree.h"
 
 
 namespace tut
