@@ -13,4 +13,8 @@ public:
   int atoi(const char *str);
 
   bool isPalindrome(std::string s);
+
+  int romanToNumber(char c);
+  
+  int romanToInt(std::string s);
 };

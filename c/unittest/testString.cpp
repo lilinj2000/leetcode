@@ -189,5 +189,27 @@ void object::test<4>()
   ensure( mString.isPalindrome(str) );
 }
 
+/**
+ * Checks romanToInt
+ */
+template<>
+template<>
+void object::test<5>()
+{
+  std::string str;
+
+  str= "III";
+  ensure( 3==mString.romanToInt(str) );
+  
+  str = "IV";
+  ensure( 4==mString.romanToInt(str) );
+
+  str = "MMMCMXCIX";
+  ensure( 3999==mString.romanToInt(str) );
+
+  str = "";
+  ensure( 0==mString.romanToInt(str) );
+}
+
 }
 

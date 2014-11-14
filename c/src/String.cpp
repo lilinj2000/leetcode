@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -209,4 +208,69 @@ bool String::isPalindrome(std::string s)
 
   // compare the two strings
   return s==r;
+}
+
+
+int String::romanToNumber(char c)
+{
+  int num = 0;
+
+  switch( c)
+  {
+    case 'I':
+      num = 1;
+      break;
+
+    case 'V':
+      num = 5;
+      break;
+
+    case 'X':
+      num = 10;
+      break;
+
+    case 'L':
+      num = 50;
+      break;
+
+    case 'C':
+      num = 100;
+      break;
+
+    case 'D':
+      num = 500;
+      break;
+
+    case 'M':
+      num = 1000;
+      break;
+  };
+
+  return num;
+}
+
+int String::romanToInt(std::string s)
+{
+  if( s.empty() )
+  {
+    return 0;
+  }
+
+  int number = romanToNumber(s[0]);
+  for(unsigned i=1; i<s.length(); i++)
+  {
+    int pre_num = romanToNumber(s[i-1]);
+    int post_num = romanToNumber(s[i]);
+
+    if( pre_num<post_num )
+    {
+      number += post_num - 2*pre_num;
+    }
+    else
+    {
+      number += post_num;
+    }
+  }
+
+  return number;
 }
