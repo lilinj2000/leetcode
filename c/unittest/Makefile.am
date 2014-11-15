@@ -2,7 +2,12 @@ SUBDIRS =
 # Execute Programs
 #bin_PROGRAMS = testLeetCode
 noinst_PROGRAMS = testLeetCode
-testLeetCode_SOURCES = main.cpp testString.cpp testNumber.cpp testTree.cpp
+testLeetCode_SOURCES = main.cpp \
+		testString.cpp \
+		testNumber.cpp \
+		testTree.cpp \
+		testMinStack.cpp
+
 testLeetCode_CPPFLAGS = -I./include -I../src
 testLeetCode_LDADD = ../src/libleetcode.a
 #testLeetCode_LDFLAGS = 
