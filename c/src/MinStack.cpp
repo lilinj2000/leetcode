@@ -1,50 +1,33 @@
-#include <cassert>
 #include "MinStack.h"
 
 void MinStack::push(int x)
 {
-  if( stack_.empty() )
-  {
-    min_value_ = x;
-  }
-  else if( x<min_value_ )
-  {
-    int val = 2*x - min_value_;
-
-    min_value_ = x;
-
-    x = val;
-
-    assert( x<min_value_ );
-  }
-
   stack_.push(x);
+
+  if( min_stack_.empty() || x<=min_stack_.top() )
+  {
+    min_stack_.push(x);
+  }
 }
 
 void MinStack::pop()
 {
   int val = stack_.top();
 
-  if( val<min_value_ )
+  if( val==min_stack_.top() )
   {
-    min_value_ = 2*min_value_ - val;
+    min_stack_.pop();
   }
-
+  
   stack_.pop();
 }
 
 int MinStack::top()
 {
-  int val = stack_.top();
-
-  if( val<min_value_ )
-  {
-    val = min_value_;
-  }
-  return val;
+  return stack_.top();
 }
 
 int MinStack::getMinValue()
 {
-  return min_value_;
+  return min_stack_.top();
 }

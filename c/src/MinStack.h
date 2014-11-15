@@ -12,7 +12,7 @@ public:
   int getMinValue();
 
 private:
-  int min_value_;
 
   std::stack<int> stack_;
+  std::stack<int> min_stack_;
 };
