@@ -1,4 +1,8 @@
+#include <iostream>
+#include <limits>
 #include "Number.h"
+
+#define log(x) std::cerr <<"[Number] " <<x <<std::endl;
 
 bool Number::isPalindrome(int x)
 {
@@ -25,4 +29,23 @@ bool Number::isPalindrome(int x)
   }
   
   return true;
+}
+
+int Number::reverse(int x)
+{
+  int int_max = std::numeric_limits<int>::max();
+  int int_min = std::numeric_limits<int>::min();
+  
+  int result = 0;
+  while( x!=0 )
+  {
+    if( result<int_min/10
+        || int_max/10<result )
+      return 0;
+    
+    result = result*10 + x%10;
+    x = x/10;
+  }
+
+  return result;
 }

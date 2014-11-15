@@ -1,5 +1,6 @@
 #include <tut/tut.hpp>
 #include <string.h>
+#include <limits>
 #include "Number.h"
 
 
@@ -52,6 +53,32 @@ void object::test<1>()
   x = 19993;
   ensure( false==mNumber.isPalindrome(x) );
 
+}
+
+/**
+ * Checks integer reverse
+ */
+template<>
+template<>
+void object::test<2>()
+{
+  int x = -1;
+  ensure( -1==mNumber.reverse(x) );
+
+  x = 1;
+  ensure( 1==mNumber.reverse(x) );
+
+  x = 1234;
+  ensure( 4321==mNumber.reverse(x) );
+
+  x = -1234;
+  ensure( -4321==mNumber.reverse(x) );
+
+  x = std::numeric_limits<int>::max();
+  ensure( 0==mNumber.reverse(x) );
+
+  x = std::numeric_limits<int>::min();
+  ensure( 0==mNumber.reverse(x) );
 }
 
 
