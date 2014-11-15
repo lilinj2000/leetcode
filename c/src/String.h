@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 class String
 {
@@ -17,4 +18,6 @@ public:
   int romanToNumber(char c);
   
   int romanToInt(std::string s);
+
+  std::string longestCommonPrefix(std::vector<std::string>&);
 };

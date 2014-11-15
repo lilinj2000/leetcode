@@ -1,5 +1,6 @@
 #include <tut/tut.hpp>
 #include <string.h>
+
 #include "String.h"
 
 
@@ -209,6 +210,42 @@ void object::test<5>()
 
   str = "";
   ensure( 0==mString.romanToInt(str) );
+}
+
+/**
+ * Checks common prefix
+ */
+template<>
+template<>
+void object::test<6>()
+{
+  std::vector<std::string> strs;
+
+  ensure( ""==mString.longestCommonPrefix(strs) );
+
+  strs.push_back("");
+  ensure( ""==mString.longestCommonPrefix(strs) );
+
+  strs.clear();
+  std::string str1 = "abcdefghijk";
+  std::string str2 = "abcdefg";
+  strs.push_back(str1);
+  strs.push_back(str2);
+  ensure( str2==mString.longestCommonPrefix(strs) );
+
+  std::string str3 = "abcd";
+  strs.push_back(str3);
+  ensure( str3==mString.longestCommonPrefix(strs) );
+
+  std::string str4 = "";
+  strs.push_back(str4);
+  ensure( str4==mString.longestCommonPrefix(strs) );
+
+  strs.clear();
+  strs.push_back("abab");
+  strs.push_back("aba");
+  strs.push_back("abc");
+  ensure( "ab"==mString.longestCommonPrefix(strs) );
 }
 
 }

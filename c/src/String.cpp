@@ -274,3 +274,30 @@ int String::romanToInt(std::string s)
 
   return number;
 }
+
+std::string String::longestCommonPrefix(std::vector<std::string>& strs)
+{
+  if( strs.empty() )
+    return "";
+
+  std::string prefix;
+  unsigned i; //string column
+  unsigned j; //number of strs
+  for(i=0; i<strs[0].length(); i++)
+  {
+    for(j=0; j<strs.size(); j++)
+    {
+      if( !(i<strs[j].length() && strs[j][i]==strs[0][i]) )
+        break;
+    }
+
+    if( j<strs.size() )
+    {
+      break;
+    }
+    
+    prefix += strs[0][i];
+  }
+
+  return prefix;
+}
