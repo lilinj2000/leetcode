@@ -1,7 +1,10 @@
 #include <algorithm>
+#include <queue>
+#include <iostream>
 
 #include "Tree.h"
 
+#define log(x) std::cerr <<"[Tree] " <<x <<std::endl;
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -61,6 +64,26 @@ int Tree::minDepth(TreeNode *root)
     
 }
 
+int Tree::maxDepth(TreeNode *root)
+{
+  if( !root )
+    return 0;
+
+  if( !root->left )
+  {
+    return maxDepth(root->right)+1;
+  }
+  else if( !root->right )
+  {
+    return maxDepth(root->left)+1;
+  }
+  else
+  {
+    return std::max(maxDepth(root->left), maxDepth(root->right))+1;
+  }
+
+}
+
 bool Tree::isBalanced(TreeNode *root)
 {
   if( !root )
@@ -81,4 +104,57 @@ int Tree::depth(TreeNode *root)
     return 0;
 
   return 1+std::max(depth(root->left), depth(root->right));
+}
+
+std::vector<std::vector<int> > Tree::levelOrder(TreeNode *root)
+{
+  std::vector<std::vector<int> > res;
+
+  if( !root )
+    return res;
+
+  std::queue<TreeNode *> dataQueue;
+  std::vector<int> level;
+  
+  // push the first level
+  dataQueue.push(root);
+  dataQueue.push(NULL);
+
+  while( !dataQueue.empty() )
+  {
+    TreeNode *node = dataQueue.front();
+    dataQueue.pop();
+
+    if( node )
+    {
+      level.push_back(node->val);
+
+      if( node->left )
+        dataQueue.push(node->left);
+
+      if( node->right )
+        dataQueue.push(node->right);
+    }
+    else
+    {
+      res.push_back(level);
+      level.clear();
+
+      if( dataQueue.empty() )
+        break;
+
+      dataQueue.push(NULL);
+    }
+  }
+
+  return res;
+}
+
+std::vector<std::vector<int> > Tree::levelOrderBottom(TreeNode *root)
+{
+  std::vector<std::vector<int> > res = levelOrder(root);
+
+  std::reverse(res.begin(), res.end());
+
+  return res;
 }

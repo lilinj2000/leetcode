@@ -122,6 +122,112 @@ void object::test<4>()
   ensure( !tree.isBalanced(&node2));
 }
 
+/**
+ * Check levelOrder
+ */
+template<>
+template<>
+void object::test<5>()
+{
+  std::vector<std::vector<int> > result;
+  result = tree.levelOrder(NULL);
+  ensure( result.empty() );
+
+  // root -> node1, node2
+  // node1 -> node3
+  // node2 -> node4, node5
+  // node4 -> node6
+  // node6 -> node7
+
+  result = tree.levelOrder(&root);
+  ensure( 5==result.size() );
+  int level = 1;
+  ensure( 1==result[level-1].size()
+          && 2==result[level-1][0] );  // root = 2
+
+  level = 2;
+  ensure( 2==result[level-1].size() 
+          && 3==result[level-1][0]  // node1 = 3
+          && 4==result[level-1][1] );// node2 = 4
+
+  level = 3;
+  ensure( 3==result[level-1].size() 
+          && 50==result[level-1][0]  // node3 = 50
+          && 10==result[level-1][1]  // node4 = 10
+          && 20==result[level-1][2]);// node5 = 20
+
+  level = 4;
+  ensure( 1==result[level-1].size() 
+          && 100==result[level-1][0]);  // node6 = 100
+
+  level = 5;
+  ensure( 1==result[level-1].size() 
+          && 200==result[level-1][0]);  // node7 = 200
+
+}
+
+/**
+ * Check levelOrderBottom
+ */
+template<>
+template<>
+void object::test<6>()
+{
+  std::vector<std::vector<int> > result;
+  result = tree.levelOrderBottom(NULL);
+  ensure( result.empty() );
+
+  // root -> node1, node2
+  // node1 -> node3
+  // node2 -> node4, node5
+  // node4 -> node6
+  // node6 -> node7
+
+  result = tree.levelOrderBottom(&root);
+  ensure( 5==result.size() );
+  
+  int level = 1;
+  ensure( 1==result[level-1].size() 
+          && 200==result[level-1][0]);  // node7 = 200
+
+  level = 2;
+  ensure( 1==result[level-1].size() 
+          && 100==result[level-1][0]);  // node6 = 100
+
+  level = 3;
+  ensure( 3==result[level-1].size() 
+          && 50==result[level-1][0]  // node3 = 50
+          && 10==result[level-1][1]  // node4 = 10
+          && 20==result[level-1][2]);// node5 = 20
+
+  level = 4;
+  ensure( 2==result[level-1].size() 
+          && 3==result[level-1][0]  // node1 = 3
+          && 4==result[level-1][1] );// node2 = 4
+
+
+  level = 5;
+  ensure( 1==result[level-1].size()
+          && 2==result[level-1][0] );  // root = 2
+
+}
+
+/**
+ * Checks maxDepth
+ */
+template<>
+template<>
+void object::test<7>()
+{
+  ensure( 0==tree.maxDepth(NULL) );
+
+  ensure( 5==tree.maxDepth(&root) );
+
+  // node1 -> node3
+  ensure( 2==tree.maxDepth(&node1) );
+
+  ensure( 4==tree.maxDepth(&node2) );
+}
 
 
 }

@@ -9,6 +9,7 @@
  */
 
 #include <cstddef>
+#include <vector>
 
 class Tree
 {
@@ -27,8 +28,13 @@ public:
 
   int minDepth(TreeNode *root);
 
+  int maxDepth(TreeNode *root);
+
   bool isBalanced(TreeNode *root);
 
+  std::vector<std::vector<int> > levelOrder(TreeNode *root);
+  
+  std::vector<std::vector<int> > levelOrderBottom(TreeNode *root);
 private:
 
   int depth(TreeNode *root);
