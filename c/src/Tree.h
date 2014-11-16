@@ -22,4 +22,14 @@ public:
   };
   
   bool isSameTree(TreeNode *p, TreeNode *q);
+
+  bool hasPathSum(TreeNode *root, int sum);
+
+  int minDepth(TreeNode *root);
+
+  bool isBalanced(TreeNode *root);
+
+private:
+
+  int depth(TreeNode *root);
 };
