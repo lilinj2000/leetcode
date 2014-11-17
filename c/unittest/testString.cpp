@@ -248,5 +248,30 @@ void object::test<6>()
   ensure( "ab"==mString.longestCommonPrefix(strs) );
 }
 
+/**
+ * Check convert ZigZag
+ */
+template<>
+template<>
+void object::test<7>()
+{
+  std::string s;
+
+  ensure( s==mString.convertZigZag(s, 5) );
+
+  s = "PAYPALISHIRING";
+  ensure( s==mString.convertZigZag(s, 0) );
+  ensure( s==mString.convertZigZag(s, 1) );
+
+  std::string result = "PAHNAPLSIIGYIR";
+  ensure( result==mString.convertZigZag(s, 3) );
+
+  result = "PINALSIGYAHRPI";
+  ensure( result==mString.convertZigZag(s, 4) );
+
+  result = "PHASIYIRPLIGAN";
+  ensure( result==mString.convertZigZag(s, 5) );
+}
+
 }
 

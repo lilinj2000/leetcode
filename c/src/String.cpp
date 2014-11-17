@@ -301,3 +301,28 @@ std::string String::longestCommonPrefix(std::vector<std::string>& strs)
 
   return prefix;
 }
+
+std::string String::convertZigZag(std::string s, int nRows)
+{
+  if( s.empty() || nRows<2 )
+    return s;
+
+  std::string result;
+  int size = 2*nRows - 2;
+
+  for(int i=0; i<nRows; i++)
+  {
+    for(int j=i; j<s.length(); j+=size)
+    {
+      result += s[j];
+
+      if( i!=0 && i!=nRows-1 && (j+size-2*i)<s.length() )
+      {
+        result += s[j+size-2*i];
+      }
+    }
+  }
+
+  return result;
+
+}

@@ -20,4 +20,6 @@ public:
   int romanToInt(std::string s);
 
   std::string longestCommonPrefix(std::vector<std::string>&);
+
+  std::string convertZigZag(std::string s, int nRows);
 };
