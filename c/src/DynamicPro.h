@@ -1,5 +1,5 @@
 
-class DynamicPro
+class Algo
 {
 public:
   int climbStairs(int n);

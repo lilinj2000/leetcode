@@ -28,4 +28,6 @@ public:
   int strStr(const char *haystack, const char *needle);
 
   std::string addBinary(std::string a, std::string b);
+
+  int lengthOfLastWord(const char *s);
 };

@@ -432,3 +432,28 @@ std::string String::addBinary(std::string a, std::string b)
 
   return res;
 }
+
+int String::lengthOfLastWord(const char *s)
+{
+  if( !s )
+    return 0;
+
+  int n = strlen(s) -1 ;
+  // skip the last space
+  for(; n>=0; n--)
+  {
+    if( !isspace(s[n]) )
+      break;
+  }
+
+  int len = 0;
+  for(; n>=0; n--)
+  {
+    if( !isspace(s[n]) )
+      len++;
+    else
+      break;
+  }
+
+  return len;
+}

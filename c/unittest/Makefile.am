@@ -9,7 +9,7 @@ testLeetCode_SOURCES = main.cpp \
 		testMinStack.cpp \
 		testArray.cpp \
 		testList.cpp \
-		testDynamicPro.cpp
+		testAlgo.cpp
 
 testLeetCode_CPPFLAGS = -I./include -I../src
 testLeetCode_LDADD = ../src/libleetcode.a

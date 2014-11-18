@@ -350,5 +350,24 @@ void object::test<10>()
   
 }
 
+/**
+ * Check lengthOfLastWord
+ */
+template<>
+template<>
+void object::test<11>()
+{
+  std::string a = "Hello World";
+  ensure( 5==string_.lengthOfLastWord(a.data()) );
+
+  a = "Hello World      ";
+  ensure( 5==string_.lengthOfLastWord(a.data()) );
+
+  a = "";
+  ensure( 0==string_.lengthOfLastWord(a.data()) );
+
+  ensure( 0==string_.lengthOfLastWord(NULL) );
+}
+
 }
 

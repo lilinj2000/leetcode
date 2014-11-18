@@ -7,7 +7,7 @@ libleetcode_a_SOURCES = Tree.cpp \
 			MinStack.cpp \
 			Array.cpp \
 			List.cpp \
-			DynamicPro.cpp
+			Algo.cpp
 
 # header files
 include_HEADERS = Tree.h String.h Number.h MinStack.h
