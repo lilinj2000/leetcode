@@ -4,6 +4,8 @@
 #include <cstring>
 #include <algorithm>
 #include <cctype>
+#include <stack>
+
 #include "String.h"
 
 
@@ -325,4 +327,49 @@ std::string String::convertZigZag(std::string s, int nRows)
 
   return result;
 
+}
+
+bool String::isValid(std::string s)
+{
+  if( s.empty() )
+    return true;
+
+  std::stack<char> stackChar;
+  for(unsigned i=0; i<s.size(); i++)
+  {
+    switch(s[i])
+    {
+      case '(':
+      case '{':
+      case '[':
+        stackChar.push(s[i]);
+        break;
+        
+      case ')':
+        if( stackChar.empty() || stackChar.top()!='(' )
+          return false;
+
+        stackChar.pop();
+        break;
+
+      case '}':
+        if( stackChar.empty() || stackChar.top()!='{' )
+          return false;
+
+        stackChar.pop();
+        break;
+        
+      case ']':
+        if( stackChar.empty() || stackChar.top()!='[' )
+          return false;
+        
+        stackChar.pop();
+        break;
+    };
+  }
+
+  if( !stackChar.empty() )
+    return false;
+  else
+    return true;
 }

@@ -5,7 +5,8 @@ libleetcode_a_SOURCES = Tree.cpp \
 			String.cpp \
 			Number.cpp \
 			MinStack.cpp \
-			Sort.cpp
+			Sort.cpp \
+			List.cpp
 
 # header files
 include_HEADERS = Tree.h String.h Number.h MinStack.h

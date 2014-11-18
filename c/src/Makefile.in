@@ -65,7 +65,8 @@ ARFLAGS = cru
 libleetcode_a_AR = $(AR) $(ARFLAGS)
 libleetcode_a_LIBADD =
 am_libleetcode_a_OBJECTS = Tree.$(OBJEXT) String.$(OBJEXT) \
-	Number.$(OBJEXT) MinStack.$(OBJEXT) Sort.$(OBJEXT)
+	Number.$(OBJEXT) MinStack.$(OBJEXT) Sort.$(OBJEXT) \
+	List.$(OBJEXT)
 libleetcode_a_OBJECTS = $(am_libleetcode_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -250,7 +251,8 @@ libleetcode_a_SOURCES = Tree.cpp \
 			String.cpp \
 			Number.cpp \
 			MinStack.cpp \
-			Sort.cpp
+			Sort.cpp \
+			List.cpp
 
 
 # header files
@@ -303,6 +305,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/List.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MinStack.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Number.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Sort.Po@am__quote@

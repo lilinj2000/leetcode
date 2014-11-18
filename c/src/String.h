@@ -22,4 +22,6 @@ public:
   std::string longestCommonPrefix(std::vector<std::string>&);
 
   std::string convertZigZag(std::string s, int nRows);
+
+  bool isValid(std::string s);
 };

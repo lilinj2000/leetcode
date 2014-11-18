@@ -66,7 +66,8 @@ am_testLeetCode_OBJECTS = testLeetCode-main.$(OBJEXT) \
 	testLeetCode-testNumber.$(OBJEXT) \
 	testLeetCode-testTree.$(OBJEXT) \
 	testLeetCode-testMinStack.$(OBJEXT) \
-	testLeetCode-testSort.$(OBJEXT)
+	testLeetCode-testSort.$(OBJEXT) \
+	testLeetCode-testList.$(OBJEXT)
 testLeetCode_OBJECTS = $(am_testLeetCode_OBJECTS)
 testLeetCode_DEPENDENCIES = ../src/libleetcode.a
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -252,7 +253,8 @@ testLeetCode_SOURCES = main.cpp \
 		testNumber.cpp \
 		testTree.cpp \
 		testMinStack.cpp \
-		testSort.cpp
+		testSort.cpp \
+		testList.cpp
 
 testLeetCode_CPPFLAGS = -I./include -I../src
 testLeetCode_LDADD = ../src/libleetcode.a
@@ -316,6 +318,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testMinStack.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testNumber.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testSort.Po@am__quote@
@@ -419,6 +422,20 @@ testLeetCode-testSort.obj: testSort.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testSort.cpp' object='testLeetCode-testSort.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testSort.obj `if test -f 'testSort.cpp'; then $(CYGPATH_W) 'testSort.cpp'; else $(CYGPATH_W) '$(srcdir)/testSort.cpp'; fi`
+
+testLeetCode-testList.o: testList.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT testLeetCode-testList.o -MD -MP -MF $(DEPDIR)/testLeetCode-testList.Tpo -c -o testLeetCode-testList.o `test -f 'testList.cpp' || echo '$(srcdir)/'`testList.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/testLeetCode-testList.Tpo $(DEPDIR)/testLeetCode-testList.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testList.cpp' object='testLeetCode-testList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testList.o `test -f 'testList.cpp' || echo '$(srcdir)/'`testList.cpp
+
+testLeetCode-testList.obj: testList.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT testLeetCode-testList.obj -MD -MP -MF $(DEPDIR)/testLeetCode-testList.Tpo -c -o testLeetCode-testList.obj `if test -f 'testList.cpp'; then $(CYGPATH_W) 'testList.cpp'; else $(CYGPATH_W) '$(srcdir)/testList.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/testLeetCode-testList.Tpo $(DEPDIR)/testLeetCode-testList.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testList.cpp' object='testLeetCode-testList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testList.obj `if test -f 'testList.cpp'; then $(CYGPATH_W) 'testList.cpp'; else $(CYGPATH_W) '$(srcdir)/testList.cpp'; fi`
 install-includeHEADERS: $(include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \

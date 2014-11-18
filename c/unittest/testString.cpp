@@ -12,7 +12,7 @@ struct string_basic
     string_basic() { }
     virtual ~string_basic() { }
 
-  String mString;
+  String string_;
 };
 
 typedef test_group<string_basic> factory;
@@ -37,44 +37,44 @@ void object::test<1>()
 {
   std::string s = "ppp";
   std::string p = s;
-  ensure( mString.isWildMatch(s.data(), p.data()) );
+  ensure( string_.isWildMatch(s.data(), p.data()) );
 
   // s = "aa";
   // p = "a";
-  // ensure( !mString.isWildMatch(s, p) );
+  // ensure( !string_.isWildMatch(s, p) );
 
   // s = "aa";
   // p = strdup(s);
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
   // s = "aaa";
   // p = "aa";
-  // ensure( !mString.isWildMatch(s, p) );
+  // ensure( !string_.isWildMatch(s, p) );
 
   
   // s = "aa";
   // p = "*";
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
   // s = "aa";
   // p = "a*";
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
   // s = "ab";
   // p = "?*";
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
   // s = "aab";
   // p = "c*a*b";
-  // ensure( !mString.isWildMatch(s, p) );
+  // ensure( !string_.isWildMatch(s, p) );
 
   // s = "hi";
   // p = "*?";
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
   // s = "aa";
   // p = "*a";
-  // ensure( mString.isWildMatch(s, p) );
+  // ensure( string_.isWildMatch(s, p) );
 
 }
 
@@ -86,33 +86,33 @@ template<>
 void object::test<2>()
 {
   int n = 1;
-  std::string result = mString.countAndSay(n);
+  std::string result = string_.countAndSay(n);
   std::string expected = "1";
   ensure( expected==result );
 
   n = 2;
-  result = mString.countAndSay(n);
+  result = string_.countAndSay(n);
   expected = "11";
   ensure( expected==result );
 
   
   n = 3;
-  result = mString.countAndSay(n);
+  result = string_.countAndSay(n);
   expected = "21";
   ensure( expected==result );
 
   n = 4;
-  result = mString.countAndSay(n);
+  result = string_.countAndSay(n);
   expected = "1211";
   ensure( expected==result );
 
   n = 5;
-  result = mString.countAndSay(n);
+  result = string_.countAndSay(n);
   expected = "111221";
   ensure( expected==result );
 
   n = 6;
-  result = mString.countAndSay(n);
+  result = string_.countAndSay(n);
   expected = "312211";
   ensure( expected==result );
 
@@ -129,43 +129,43 @@ void object::test<3>()
 
   // support integer with sign
   str= "+560";
-  ensure( 560 == mString.atoi(str.data()) );
+  ensure( 560 == string_.atoi(str.data()) );
   
   str = "-100";
-  ensure( -100 == mString.atoi(str.data()) );
+  ensure( -100 == string_.atoi(str.data()) );
 
   // support whitespace on the left or the right
   str = "    100   ";
-  ensure( 100 == mString.atoi(str.data()) );
+  ensure( 100 == string_.atoi(str.data()) );
 
   // support the addional characters and ignore it.
   str = "100abc345";
-  ensure( 100 == mString.atoi(str.data()) );
+  ensure( 100 == string_.atoi(str.data()) );
   
   // return zero in case the first non-whitespace is not a valid integral data
   str = "a1000";
-  ensure( 0 == mString.atoi(str.data()) );
+  ensure( 0 == string_.atoi(str.data()) );
 
   // return zero in case empty string or the only whitespace
   str = "";
-  ensure( 0 == mString.atoi(str.data()) );
+  ensure( 0 == string_.atoi(str.data()) );
   
   str = "    ";
-  ensure( 0 == mString.atoi(str.data()) );
+  ensure( 0 == string_.atoi(str.data()) );
   
   // return INT_MAX in case out of range INT_MAX(2147483647)
   str = "2147483647";
-  ensure( 2147483647 == mString.atoi(str.data()) );
+  ensure( 2147483647 == string_.atoi(str.data()) );
   
   str = "2147483648";
-  ensure( 2147483647 == mString.atoi(str.data()) );
+  ensure( 2147483647 == string_.atoi(str.data()) );
 
   // return INT_MIN in case out of range INT_MIN(-2147483648)
   str = "-2147483648";
-  ensure( -2147483648 == mString.atoi(str.data()) );
+  ensure( -2147483648 == string_.atoi(str.data()) );
   
   str = "-2147483649";
-  ensure( -2147483648 == mString.atoi(str.data()) );
+  ensure( -2147483648 == string_.atoi(str.data()) );
 }
 
 /**
@@ -178,16 +178,16 @@ void object::test<4>()
   std::string str;
 
   str= "A man, a plan, a canal: Panama";
-  ensure( mString.isPalindrome(str) );
+  ensure( string_.isPalindrome(str) );
   
   str = "race a car";
-  ensure( !mString.isPalindrome(str) );
+  ensure( !string_.isPalindrome(str) );
 
   str = "r123321r";
-  ensure( mString.isPalindrome(str) );
+  ensure( string_.isPalindrome(str) );
 
   str = "";
-  ensure( mString.isPalindrome(str) );
+  ensure( string_.isPalindrome(str) );
 }
 
 /**
@@ -200,16 +200,16 @@ void object::test<5>()
   std::string str;
 
   str= "III";
-  ensure( 3==mString.romanToInt(str) );
+  ensure( 3==string_.romanToInt(str) );
   
   str = "IV";
-  ensure( 4==mString.romanToInt(str) );
+  ensure( 4==string_.romanToInt(str) );
 
   str = "MMMCMXCIX";
-  ensure( 3999==mString.romanToInt(str) );
+  ensure( 3999==string_.romanToInt(str) );
 
   str = "";
-  ensure( 0==mString.romanToInt(str) );
+  ensure( 0==string_.romanToInt(str) );
 }
 
 /**
@@ -221,31 +221,31 @@ void object::test<6>()
 {
   std::vector<std::string> strs;
 
-  ensure( ""==mString.longestCommonPrefix(strs) );
+  ensure( ""==string_.longestCommonPrefix(strs) );
 
   strs.push_back("");
-  ensure( ""==mString.longestCommonPrefix(strs) );
+  ensure( ""==string_.longestCommonPrefix(strs) );
 
   strs.clear();
   std::string str1 = "abcdefghijk";
   std::string str2 = "abcdefg";
   strs.push_back(str1);
   strs.push_back(str2);
-  ensure( str2==mString.longestCommonPrefix(strs) );
+  ensure( str2==string_.longestCommonPrefix(strs) );
 
   std::string str3 = "abcd";
   strs.push_back(str3);
-  ensure( str3==mString.longestCommonPrefix(strs) );
+  ensure( str3==string_.longestCommonPrefix(strs) );
 
   std::string str4 = "";
   strs.push_back(str4);
-  ensure( str4==mString.longestCommonPrefix(strs) );
+  ensure( str4==string_.longestCommonPrefix(strs) );
 
   strs.clear();
   strs.push_back("abab");
   strs.push_back("aba");
   strs.push_back("abc");
-  ensure( "ab"==mString.longestCommonPrefix(strs) );
+  ensure( "ab"==string_.longestCommonPrefix(strs) );
 }
 
 /**
@@ -257,20 +257,44 @@ void object::test<7>()
 {
   std::string s;
 
-  ensure( s==mString.convertZigZag(s, 5) );
+  ensure( s==string_.convertZigZag(s, 5) );
 
   s = "PAYPALISHIRING";
-  ensure( s==mString.convertZigZag(s, 0) );
-  ensure( s==mString.convertZigZag(s, 1) );
+  ensure( s==string_.convertZigZag(s, 0) );
+  ensure( s==string_.convertZigZag(s, 1) );
 
   std::string result = "PAHNAPLSIIGYIR";
-  ensure( result==mString.convertZigZag(s, 3) );
+  ensure( result==string_.convertZigZag(s, 3) );
 
   result = "PINALSIGYAHRPI";
-  ensure( result==mString.convertZigZag(s, 4) );
+  ensure( result==string_.convertZigZag(s, 4) );
 
   result = "PHASIYIRPLIGAN";
-  ensure( result==mString.convertZigZag(s, 5) );
+  ensure( result==string_.convertZigZag(s, 5) );
+}
+
+/**
+ * Check isValid string for (), [], {}
+ */
+template<>
+template<>
+void object::test<8>()
+{
+  std::string s;
+
+  ensure( string_.isValid(s) );
+
+  s = "asdfasdf{asfasdfsdf(fasfasdf(fadfsd)asdfasd)afasdf}adf";
+  ensure( string_.isValid(s) );
+
+  s = "{{{{{fadafsdf(((())))}}}}";
+  ensure( !string_.isValid(s) );
+
+  s = "fasdd[[[[[[]]]]]]{{{{{{(((((())))))}}}}}}";
+  ensure( string_.isValid(s) );
+
+  s = "}}}}}}}}{{{{{{{";
+  ensure( !string_.isValid(s) );
 }
 
 }

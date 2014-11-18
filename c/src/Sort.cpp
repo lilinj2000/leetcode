@@ -33,3 +33,21 @@ int Sort::searchInsert(int A[], int n, int target)
   else
     return start;
 }
+
+void Sort::merge(int A[], int m, int B[], int n)
+{
+  int iA = m-1;
+  int iB = n-1;
+  int iCur = m+n-1;
+
+  while( iA>=0 && iB>=0 )
+  {
+    A[iCur--] = A[iA]>B[iB]?A[iA--]:B[iB--];
+  }
+
+  while(iB>=0)
+  {
+    A[iCur--] = B[iB--];
+  }
+  
+}
