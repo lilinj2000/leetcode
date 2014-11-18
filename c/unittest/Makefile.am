@@ -7,7 +7,7 @@ testLeetCode_SOURCES = main.cpp \
 		testNumber.cpp \
 		testTree.cpp \
 		testMinStack.cpp \
-		testSort.cpp \
+		testArray.cpp \
 		testList.cpp
 
 testLeetCode_CPPFLAGS = -I./include -I../src

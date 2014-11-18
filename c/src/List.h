@@ -12,4 +12,6 @@ class List
 {
 public:
   ListNode *removeNthFromEnd(ListNode *head, int n);
+
+  ListNode *deleteDuplicates(ListNode *head);
 };

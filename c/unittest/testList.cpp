@@ -70,6 +70,38 @@ void object::test<1>()
 }
 
 
+/**
+ * Check deleteDuplicates
+ */
+template<>
+template<>
+void object::test<2>()
+{
+  ensure( NULL==list_.deleteDuplicates(NULL));
+
+  ListNode* head;
+  ListNode* node1;
+  ListNode* node2;
+  ListNode* node3;
+
+  head = new ListNode(2);
+  node1 = new ListNode(3);
+  node2 = new ListNode(3);
+  node3 = new ListNode(3);
+    
+  head->next = node1;
+  node1->next = node2;
+  node2->next = node3;
+
+
+  ListNode* pHead = list_.deleteDuplicates(head);
+  ensure( head==pHead );
+  ensure( node1==pHead->next );
+  ensure( NULL==node1->next );
+
+}
+
+
 
 }
 

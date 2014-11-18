@@ -5,7 +5,7 @@ libleetcode_a_SOURCES = Tree.cpp \
 			String.cpp \
 			Number.cpp \
 			MinStack.cpp \
-			Sort.cpp \
+			Array.cpp \
 			List.cpp
 
 # header files

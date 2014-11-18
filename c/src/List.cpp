@@ -33,3 +33,29 @@ ListNode* List::removeNthFromEnd(ListNode *head, int n)
 
   return head;
 }
+
+ListNode *List::deleteDuplicates(ListNode *head)
+{
+  if( !head )
+    return head;
+  
+  ListNode *p = head;
+  ListNode *q = head;
+
+  while( q=q->next )
+  {
+    if( p->val==q->val )
+    {
+      p->next = q->next;
+      delete q;
+      
+      q = p;
+    }
+    else
+    {
+      p = q;
+    }
+  }
+
+  return head;
+}
