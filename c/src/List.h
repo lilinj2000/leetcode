@@ -14,4 +14,6 @@ public:
   ListNode *removeNthFromEnd(ListNode *head, int n);
 
   ListNode *deleteDuplicates(ListNode *head);
+
+  ListNode *mergeTwoLists(ListNode *l1, ListNode *l2);
 };

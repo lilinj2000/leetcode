@@ -59,3 +59,42 @@ ListNode *List::deleteDuplicates(ListNode *head)
 
   return head;
 }
+
+ListNode *List::mergeTwoLists(ListNode *l1, ListNode *l2)
+{
+  if( NULL==l1 )
+    return l2;
+
+  if( NULL==l2 )
+    return l1;
+
+  ListNode* p = l1;
+  ListNode* q = l2;
+  ListNode* cur = NULL;
+
+  while( p && q )
+  {
+    if( p->val<q->val )
+    {
+      if( NULL!=cur )
+        cur->next = p;
+      
+      cur = p;
+      p = p->next;
+    }
+    else
+    {
+      if( NULL!=cur )
+        cur->next = q;
+
+      cur = q;
+      q = q->next;
+    }
+  }
+
+  cur->next = (NULL==p)?q:p;
+
+  ListNode* head = (l1->val<l2->val)? l1 : l2;
+
+  return head;
+}
