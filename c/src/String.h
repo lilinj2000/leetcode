@@ -26,4 +26,6 @@ public:
   bool isValid(std::string s);
 
   int strStr(const char *haystack, const char *needle);
+
+  std::string addBinary(std::string a, std::string b);
 };

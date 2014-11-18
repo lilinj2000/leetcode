@@ -321,5 +321,34 @@ void object::test<9>()
   ensure( 0==string_.strStr(s.data(), s.data()) );
 }
 
+/**
+ * Check addBinary
+ */
+template<>
+template<>
+void object::test<10>()
+{
+  std::string a = "11";
+  std::string b = "1";
+
+  std::string res = "100";
+  ensure( res==string_.addBinary(a, b) );
+
+  a = "100001";
+  b = "11";
+
+  res = "100100";
+  ensure( res==string_.addBinary(a, b) );
+
+  b = "";
+  res = a;
+  ensure( res==string_.addBinary(a, b) );
+
+  a = "";
+  res = "";
+  ensure( res==string_.addBinary(a, b) );
+  
+}
+
 }
 

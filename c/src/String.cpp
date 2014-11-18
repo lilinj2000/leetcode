@@ -400,3 +400,35 @@ int String::strStr(const char *haystack, const char *needle)
 
   return -1;
 }
+
+std::string String::addBinary(std::string a, std::string b)
+{
+  std::string res;
+
+  int i = a.length() - 1;
+  int j = b.length() - 1;
+
+  int one = 0;
+  while( i>=0 || j>=0 )
+  {
+    int aValue = 0;
+    if( i>=0 )
+      aValue = a[i--]-'0';
+    
+    int bValue = 0;
+    if( j>=0 )
+      bValue = b[j--]-'0';
+
+    char digit = (aValue + bValue + one)%2 + '0';
+    res.push_back(digit);
+
+    one = (aValue + bValue + one)/2;
+  }
+
+  if( one )
+    res.push_back('1');
+
+  std::reverse(res.begin(), res.end());
+
+  return res;
+}
