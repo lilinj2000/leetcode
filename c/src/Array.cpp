@@ -99,3 +99,25 @@ int Array::removeElement(int A[], int n, int elem)
 
   return iPre+1;
 }
+
+std::vector<int> Array::plusOne(std::vector<int> &digits)
+{
+  if( digits.empty() )
+    return digits;
+
+  int one = 1;
+  for(int i=digits.size()-1; i>=0; i--)
+  {
+    int digit = (digits[i]+one)%10;
+    one = (digits[i]+one)/10;
+
+    digits[i] = digit;
+    if( !one )
+      return digits;
+  }
+
+  digits.push_back(0);
+  digits[0] = 1;
+
+  return digits;
+}

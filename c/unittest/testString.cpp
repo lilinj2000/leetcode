@@ -297,5 +297,29 @@ void object::test<8>()
   ensure( !string_.isValid(s) );
 }
 
+/**
+ * Check strStr
+ */
+template<>
+template<>
+void object::test<9>()
+{
+  std::string s = "as789asfa789dfd";
+  std::string p = "789";
+
+  ensure( -1==string_.strStr(s.data(), NULL) );
+  ensure( -1==string_.strStr(NULL, p.data()) );
+
+  ensure( 2==string_.strStr(s.data(), p.data()) );
+
+  ensure( -1==string_.strStr(p.data(), s.data()) );
+
+  ensure( 0==string_.strStr("", "") );
+
+  ensure( 0==string_.strStr(s.data(), "") );
+
+  ensure( 0==string_.strStr(s.data(), s.data()) );
+}
+
 }
 

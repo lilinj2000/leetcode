@@ -67,7 +67,8 @@ am_testLeetCode_OBJECTS = testLeetCode-main.$(OBJEXT) \
 	testLeetCode-testTree.$(OBJEXT) \
 	testLeetCode-testMinStack.$(OBJEXT) \
 	testLeetCode-testArray.$(OBJEXT) \
-	testLeetCode-testList.$(OBJEXT)
+	testLeetCode-testList.$(OBJEXT) \
+	testLeetCode-testDynamicPro.$(OBJEXT)
 testLeetCode_OBJECTS = $(am_testLeetCode_OBJECTS)
 testLeetCode_DEPENDENCIES = ../src/libleetcode.a
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -254,7 +255,8 @@ testLeetCode_SOURCES = main.cpp \
 		testTree.cpp \
 		testMinStack.cpp \
 		testArray.cpp \
-		testList.cpp
+		testList.cpp \
+		testDynamicPro.cpp
 
 testLeetCode_CPPFLAGS = -I./include -I../src
 testLeetCode_LDADD = ../src/libleetcode.a
@@ -319,6 +321,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testArray.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testDynamicPro.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testMinStack.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testLeetCode-testNumber.Po@am__quote@
@@ -436,6 +439,20 @@ testLeetCode-testList.obj: testList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testList.cpp' object='testLeetCode-testList.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testList.obj `if test -f 'testList.cpp'; then $(CYGPATH_W) 'testList.cpp'; else $(CYGPATH_W) '$(srcdir)/testList.cpp'; fi`
+
+testLeetCode-testDynamicPro.o: testDynamicPro.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT testLeetCode-testDynamicPro.o -MD -MP -MF $(DEPDIR)/testLeetCode-testDynamicPro.Tpo -c -o testLeetCode-testDynamicPro.o `test -f 'testDynamicPro.cpp' || echo '$(srcdir)/'`testDynamicPro.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/testLeetCode-testDynamicPro.Tpo $(DEPDIR)/testLeetCode-testDynamicPro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testDynamicPro.cpp' object='testLeetCode-testDynamicPro.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testDynamicPro.o `test -f 'testDynamicPro.cpp' || echo '$(srcdir)/'`testDynamicPro.cpp
+
+testLeetCode-testDynamicPro.obj: testDynamicPro.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT testLeetCode-testDynamicPro.obj -MD -MP -MF $(DEPDIR)/testLeetCode-testDynamicPro.Tpo -c -o testLeetCode-testDynamicPro.obj `if test -f 'testDynamicPro.cpp'; then $(CYGPATH_W) 'testDynamicPro.cpp'; else $(CYGPATH_W) '$(srcdir)/testDynamicPro.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/testLeetCode-testDynamicPro.Tpo $(DEPDIR)/testLeetCode-testDynamicPro.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testDynamicPro.cpp' object='testLeetCode-testDynamicPro.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testLeetCode_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o testLeetCode-testDynamicPro.obj `if test -f 'testDynamicPro.cpp'; then $(CYGPATH_W) 'testDynamicPro.cpp'; else $(CYGPATH_W) '$(srcdir)/testDynamicPro.cpp'; fi`
 install-includeHEADERS: $(include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \

@@ -1,3 +1,4 @@
+#include <vector>
 
 class Array
 {
@@ -10,4 +11,6 @@ public:
   int removeDuplicates(int A[], int n);
 
   int removeElement(int A[], int n, int elem);
+
+  std::vector<int> plusOne(std::vector<int> &digits);
 };

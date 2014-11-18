@@ -373,3 +373,30 @@ bool String::isValid(std::string s)
   else
     return true;
 }
+
+int String::strStr(const char *haystack, const char *needle)
+{
+  if( !haystack || !needle )
+    return -1;
+  
+  int hLen = strlen(haystack);
+  int nLen = strlen(needle);
+
+  if( 0==nLen )
+    return 0;
+
+  for(int i=0; i<=hLen-nLen; i++)
+  {
+    int j = 0;
+    for(; j<nLen; j++)
+    {
+      if( haystack[i+j]!=needle[j] )
+        break;
+    }
+
+    if( j==nLen )
+      return i;
+  }
+
+  return -1;
+}

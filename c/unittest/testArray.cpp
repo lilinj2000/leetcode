@@ -152,8 +152,56 @@ void object::test<4>()
       ensure( resA[i]==A[i] );
     }
   }
-
  
+}
+
+/**
+ * Check plusOne
+ */
+template<>
+template<>
+void object::test<5>()
+{
+  std::vector<int> emptyDigits;
+  std::vector<int> resDigits = array_.plusOne(emptyDigits);
+  ensure( resDigits.empty() );
+
+  std::vector<int> nDigits;
+  nDigits.push_back(1);
+  nDigits.push_back(4);
+  nDigits.push_back(5);
+  nDigits.push_back(6);
+  nDigits.push_back(9);
+
+  std::vector<int> expDigits = nDigits;
+  expDigits[3] = 7;
+  expDigits[4] = 0;
+  
+  resDigits = array_.plusOne(nDigits);
+
+  for(unsigned i=0; i<resDigits.size(); i++)
+  {
+    ensure( resDigits[i]==expDigits[i] );
+  }
+
+  std::vector<int> sDigits;
+  sDigits.push_back(9);
+  sDigits.push_back(9);
+  sDigits.push_back(9);
+
+  expDigits.clear();
+  expDigits.push_back(1);
+  expDigits.push_back(0);
+  expDigits.push_back(0);
+  expDigits.push_back(0);
+      
+  resDigits = array_.plusOne(sDigits);
+
+  for(unsigned i=0; i<resDigits.size(); i++)
+  {
+    ensure( resDigits[i]==expDigits[i] );
+  }
+  
 }
 
 

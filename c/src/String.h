@@ -24,4 +24,6 @@ public:
   std::string convertZigZag(std::string s, int nRows);
 
   bool isValid(std::string s);
+
+  int strStr(const char *haystack, const char *needle);
 };
