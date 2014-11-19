@@ -45,6 +45,22 @@ void object::test<1>()
   
 }
 
+/**
+ * Check isValidSudoku
+ */
+template<>
+template<>
+void object::test<2>()
+{
+  std::vector<std::vector<char> > sudoku;
+  ensure( !algo_.isValidSudoku(sudoku) );
+
+  // std::vector<char> row;
+  // char A[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+  // int n = 9;
+  
+}
+
 
 
 }
