@@ -61,6 +61,97 @@ void object::test<2>()
   
 }
 
+/**
+ * Check subsets
+ */
+template<>
+template<>
+void object::test<3>()
+{
+  std::vector<std::vector<int> > res;
+  std::vector<int> s;
+
+  res = algo_.subsets(s);
+  ensure( 1==res.size() );
+
+  s.push_back(1);
+  res = algo_.subsets(s);
+  ensure( 2==res.size() );
+
+  s.push_back(2);
+  res = algo_.subsets(s);
+  ensure( 4==res.size() );
+
+  s.push_back(3);
+  res = algo_.subsets(s);
+  ensure( 8==res.size() );
+}
+
+/**
+ * Check twosum
+ */
+template<>
+template<>
+void object::test<4>()
+{
+  std::vector<std::vector<int> > res;
+  std::vector<int> s;
+
+  res = algo_.twosum(s, 0, 0);
+  ensure( res.empty() );
+
+  s.push_back(-1);
+  s.push_back(-4);
+  s.push_back(-5);
+  s.push_back(-4);
+  s.push_back(-1);
+  s.push_back(0);
+
+  res = algo_.twosum(s, s.size(), -5);
+  ensure( 2==res.size() );
+
+}
+
+/**
+ * Check threesum
+ */
+template<>
+template<>
+void object::test<5>()
+{
+  std::vector<std::vector<int> > res;
+  std::vector<int> s;
+
+  res = algo_.threesum(s, 0);
+  ensure( res.empty() );
+
+  s.push_back(-1);
+  s.push_back(-4);
+  s.push_back(-5);
+  s.push_back(-4);
+  s.push_back(-1);
+  s.push_back(0);
+  s.push_back(-6);
+  s.push_back(1);
+
+  res = algo_.threesum(s, -5);
+  // std::cerr <<"res size is " <<res.size() <<std::endl;
+  // for( unsigned i=0; i<res.size(); i++)
+  // {
+  //   std::copy(res[i].begin(), res[i].end(), std::ostream_iterator<int>(std::cerr, " "));
+  //   std::cerr <<"\n";
+  // }
+  ensure( 3==res.size() );
+
+  s.clear();
+  s.push_back(0);
+  s.push_back(0);
+  s.push_back(0);
+  res = algo_.threesum(s, 0);
+  ensure( 1==res.size() );
+
+}
+
 
 
 }

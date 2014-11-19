@@ -1,5 +1,10 @@
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+
 #include "Algo.h"
 
+#define log(x) std::cerr <<"[Alog] " <<x <<std::endl;
 int Algo::climbStairs(int n)
 {
   int f1 = 1;
@@ -49,4 +54,103 @@ bool Algo::isValidSudoku(std::vector<std::vector<char> > &board)
   }
 
   return true;
+}
+
+std::vector<std::vector<int> > Algo::subsets(std::vector<int> &s)
+{
+  std::vector<std::vector<int> > res;
+  res.push_back( std::vector<int>() );
+
+  std::sort(s.begin(), s.end());
+  
+  for(unsigned i=0; i<s.size(); i++)
+  {
+    unsigned len = res.size();
+    for(unsigned j=0; j<len; j++)
+    {
+      std::vector<int> subset = res[j];
+      subset.push_back(s[i]);
+
+      res.push_back(subset);
+    }
+  }
+
+  return res;
+}
+
+std::vector<std::vector<int> > Algo::twosum(std::vector<int> &num, int len, int target)
+{
+  assert( len<=num.size() );
+
+  std::sort(num.begin(), num.begin()+len);
+  
+  std::vector<std::vector<int> > res;
+
+  if( len<2 )
+    return res;
+
+  
+  int begin = 0;
+  int end = len - 1;
+
+  while( begin<end )
+  {
+    int sum = num[begin] + num[end];
+    if( sum==target )
+    {
+      std::vector<int> item;
+      item.push_back(num[begin]);
+      item.push_back(num[end]);
+      res.push_back(item);
+      
+      begin++;
+      end--;
+
+      while(begin<end && num[begin]==num[begin-1])
+        begin++;
+
+      while(begin<end && num[end]==num[end+1])
+        end--;
+    }
+    else if( sum>target )
+    {
+      end--;
+    }
+    else
+    {
+      begin++;
+    }
+  }
+
+  return res;
+}
+
+std::vector<std::vector<int> > Algo::threesum(std::vector<int> &num, int target)
+{
+  std::vector<std::vector<int> > res;
+
+  if( num.size()<3 )
+    return res;
+
+  std::sort(num.begin(), num.end());
+
+  for(unsigned i=num.size()-1; i>=2; i--)
+  {
+
+    if( i<num.size()-1 && num[i]==num[i+1] )
+      continue;
+           
+    int twoTarget = target - num[i];
+
+    std::vector<std::vector<int> > twoRes = twosum(num, i, twoTarget);
+
+    for(unsigned j=0; j<twoRes.size(); j++)
+    {
+      twoRes[j].push_back(num[i]);
+
+      res.push_back(twoRes[j]);
+    }
+  }
+
+  return res;
 }
