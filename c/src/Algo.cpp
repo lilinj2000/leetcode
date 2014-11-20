@@ -1,6 +1,7 @@
 #include <algorithm>
-#include <cassert>
 #include <iostream>
+#include <cassert>
+#include <climits>
 
 #include "Algo.h"
 
@@ -153,4 +154,43 @@ std::vector<std::vector<int> > Algo::threesum(std::vector<int> &num, int target)
   }
 
   return res;
+}
+
+int Algo::maxProfit(std::vector<int> &prices)
+{
+  int max_profit = 0;
+  int lowest_price = INT_MAX;
+
+  for(unsigned i=0; i<prices.size(); i++)
+  {
+    if( prices[i]<lowest_price )
+    {
+      lowest_price = prices[i];
+    }
+    else
+    {
+      max_profit = std::max(max_profit, prices[i]-lowest_price);
+    }
+  }
+
+  return max_profit;
+}
+
+int Algo::maxProfitII(std::vector<int> &prices)
+{
+  if( prices.size()<2 )
+    return 0;
+  
+  int max_profit = 0;
+  for(unsigned i=1; i<prices.size(); i++)
+  {
+    int profit = prices[i]-prices[i-1];
+
+    if( profit>0 )
+    {
+      max_profit += profit;
+    }
+  }
+
+  return max_profit;
 }

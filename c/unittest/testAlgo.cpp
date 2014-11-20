@@ -153,6 +153,61 @@ void object::test<5>()
 }
 
 
+/**
+ * Check max profit
+ */
+template<>
+template<>
+void object::test<6>()
+{
+  std::vector<int> prices;
+
+  ensure( 0==algo_.maxProfit(prices) );
+
+  prices.push_back(2);
+  ensure( 0==algo_.maxProfit(prices) );
+  
+  prices.push_back(1);
+  ensure( 0==algo_.maxProfit(prices) );
+
+
+  prices.push_back(5);
+  ensure( 4==algo_.maxProfit(prices) );
+}
+
+/**
+ * Check max profit II
+ */
+template<>
+template<>
+void object::test<7>()
+{
+  std::vector<int> prices;
+
+  ensure( 0==algo_.maxProfitII(prices) );
+
+  prices.push_back(2);
+  ensure( 0==algo_.maxProfitII(prices) );
+  
+  prices.push_back(1);
+  ensure( 0==algo_.maxProfitII(prices) );
+
+  prices.push_back(5);
+  ensure( 4==algo_.maxProfitII(prices) );
+
+  prices.push_back(8);
+  ensure( 7==algo_.maxProfitII(prices) );
+
+  prices.push_back(7);
+  ensure( 7==algo_.maxProfitII(prices) );
+
+  prices.push_back(8);
+  ensure( 8==algo_.maxProfitII(prices) );
+
+
+}
+
+
 
 }
 

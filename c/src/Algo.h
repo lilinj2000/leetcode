@@ -12,4 +12,8 @@ public:
   std::vector<std::vector<int> > twosum(std::vector<int> &num, int end, int target);
 
   std::vector<std::vector<int> > threesum(std::vector<int> &num, int target);
+
+  int maxProfit(std::vector<int> &prices);
+
+  int maxProfitII(std::vector<int> &prices);
 };
