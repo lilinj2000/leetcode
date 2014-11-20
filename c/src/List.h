@@ -16,4 +16,6 @@ public:
   ListNode *deleteDuplicates(ListNode *head);
 
   ListNode *mergeTwoLists(ListNode *l1, ListNode *l2);
+
+  ListNode* addTwoNumbers(ListNode *l1, ListNode *l2);
 };

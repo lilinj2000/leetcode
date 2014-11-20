@@ -203,8 +203,30 @@ void object::test<7>()
 
   prices.push_back(8);
   ensure( 8==algo_.maxProfitII(prices) );
+}
 
+/**
+ * Check minimumTotal
+ */
+template<>
+template<>
+void object::test<8>()
+{
+  std::vector<std::vector<int> > triangle;
+  triangle.resize(4);
 
+  triangle[0].push_back(2);
+  triangle[1].push_back(3);
+  triangle[1].push_back(4);
+  triangle[2].push_back(6);
+  triangle[2].push_back(5);
+  triangle[2].push_back(7);
+  triangle[3].push_back(4);
+  triangle[3].push_back(1);
+  triangle[3].push_back(8);
+  triangle[3].push_back(3);
+
+  ensure( 11==algo_.minimumTotal(triangle) );
 }
 
 

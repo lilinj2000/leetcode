@@ -194,3 +194,31 @@ int Algo::maxProfitII(std::vector<int> &prices)
 
   return max_profit;
 }
+
+int Algo::minimumTotal(std::vector<std::vector<int> > &triangle)
+{
+  if( triangle.empty() )
+    return 0;
+  
+  std::vector<int> buf;
+  buf.resize(triangle.size());
+
+  for(int i=triangle.size()-1; i>=0; i--)
+  {
+    assert( i+1==triangle[i].size() );
+    
+    for(int j=0; j<triangle[i].size(); j++)
+    {
+      if( i==triangle.size()-1 )
+      {
+        buf[j] = triangle[i][j];
+      }
+      else
+      {
+        buf[j] = std::min(buf[j], buf[j+1]) +triangle[i][j];
+      }
+    }
+  }
+
+  return buf[0];
+}

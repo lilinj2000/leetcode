@@ -165,6 +165,41 @@ void object::test<3>()
   freeList(l1);
 }
 
+/**
+ * Check addTwoNumbers
+ */
+template<>
+template<>
+void object::test<4>()
+{
+  ensure( NULL==list_.addTwoNumbers(NULL, NULL));
+
+  int A[] = {2, 4, 3};
+  int n = sizeof(A)/sizeof(int);
+  ListNode* l1 = buildList(A, n);
+
+  int B[] = {5, 6, 4};
+  int m = sizeof(B)/sizeof(int);
+  ListNode* l2 = buildList(B, m);
+
+  int res[] = {7, 0, 8};
+  ListNode* result = list_.addTwoNumbers(l1, l2);
+  ensure( sameList(result, res, 3) );
+
+  int C[] = {4, 4, 5, 9, 9, 9};
+  ListNode* l3 = buildList(C, 6);
+  ListNode* result2 = list_.addTwoNumbers(l2, l3);
+
+  int res2[] = {9, 0, 0, 0, 0, 0, 1};
+  ensure( sameList(result2, res2, 7) );
+
+  freeList(l1);
+  freeList(l2);
+  freeList(l3);
+  freeList(result);
+  freeList(result2);
+}
+
 
 
 }

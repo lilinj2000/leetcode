@@ -16,4 +16,6 @@ public:
   int maxProfit(std::vector<int> &prices);
 
   int maxProfitII(std::vector<int> &prices);
+
+  int minimumTotal(std::vector<std::vector<int> > &triangle);
 };
