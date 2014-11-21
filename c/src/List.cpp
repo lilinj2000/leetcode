@@ -139,3 +139,67 @@ ListNode* List::addTwoNumbers(ListNode *l1, ListNode *l2)
 
   return head;
 }
+
+ListNode* List::sortList(ListNode *head)
+{
+  if( !head || !head->next )
+    return head;
+
+  ListNode* fast = head;
+  ListNode* slow = head;
+
+  while(fast->next && fast->next->next)
+  {
+    fast = fast->next->next;
+    slow = slow->next;
+  }
+
+  fast = slow;
+  slow = slow->next;
+  fast->next = NULL;
+
+  fast = sortList(head);
+  slow = sortList(slow);
+
+  return mergeTwoLists(fast, slow);
+}
+
+ListNode* List::insertionSortList(ListNode *head)
+{
+  if( !head || !head->next )
+    return head;
+
+  ListNode* p = head->next;
+  head->next = NULL;
+
+  while( p )
+  {
+    ListNode* q = p;
+    p = p->next;
+
+    ListNode* fast = head;
+    ListNode* slow = NULL;
+
+    while( fast )
+    {
+      if( fast->val>q->val )
+        break;
+
+      slow = fast;
+      fast = fast->next;
+    }
+
+    if( !slow )
+    {
+      q->next = head;
+      head = q;
+    }
+    else
+    {
+      slow->next = q;
+      q->next = fast;
+    }
+  }
+
+  return head;
+}

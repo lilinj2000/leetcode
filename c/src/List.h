@@ -18,4 +18,8 @@ public:
   ListNode *mergeTwoLists(ListNode *l1, ListNode *l2);
 
   ListNode* addTwoNumbers(ListNode *l1, ListNode *l2);
+
+  ListNode* sortList(ListNode *head);
+
+  ListNode* insertionSortList(ListNode *head);
 };

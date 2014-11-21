@@ -200,6 +200,54 @@ void object::test<4>()
   freeList(result2);
 }
 
+/**
+ * Check sort list (merge)
+ */
+template<>
+template<>
+void object::test<5>()
+{
+  ensure( NULL==list_.sortList(NULL));
+
+  int A[] = {2, 3, 6, 8, 4, 5, 9, 10, 7, 6};
+  int n = sizeof(A)/sizeof(int);
+  ListNode* head = buildList(A, n);
+
+  int B[] = {2, 3, 4, 5, 6, 6, 7, 8, 9, 10};
+
+  ListNode* l1 = list_.sortList(head);
+  ensure( sameList(l1, B, n) );
+  freeList(l1);
+}
+
+/**
+ * Check insertion list
+ */
+template<>
+template<>
+void object::test<6>()
+{
+  ensure( NULL==list_.insertionSortList(NULL));
+
+  int A[] = {2, 3, 6, 8, 4, 5, 9, 10, 7, 6};
+  int n = sizeof(A)/sizeof(int);
+  ListNode* head = buildList(A, n);
+
+  int B[] = {2, 3, 4, 5, 6, 6, 7, 8, 9, 10};
+
+  ListNode* l1 = list_.insertionSortList(head);
+  ensure( sameList(l1, B, n) );
+  freeList(l1);
+
+
+  int C[] = { 2, 1 };
+  ListNode* l2 = buildList(C, 2);
+  ListNode* res_l2 = list_.insertionSortList(l2);
+  int D[] = { 1, 2 };
+  ensure( sameList(res_l2, D, 2) );
+  freeList(res_l2);
+  
+}
 
 
 }
