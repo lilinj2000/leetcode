@@ -229,6 +229,44 @@ void object::test<8>()
   ensure( 11==algo_.minimumTotal(triangle) );
 }
 
+/**
+ * Check three sum closest
+ */
+template<>
+template<>
+void object::test<9>()
+{
+  std::vector<int> s;
+
+  int ret = algo_.threeSumClosest(s, 100);
+  ensure( 0==ret );
+
+  s.push_back(-1);
+  ret = algo_.threeSumClosest(s, 100);
+  ensure( 0==ret);
+
+  int A[] = { 3, 4, 5, 6, 7, 8, 2, 3, 5 };
+  int n = sizeof(A)/sizeof(int);
+  s.resize(n);
+  std::copy(A, A+n, s.begin());
+  
+  ret = algo_.threeSumClosest(s, 18);
+  ensure( 18==ret );
+
+  ret = algo_.threeSumClosest(s, 25);
+  ensure( 21==ret );
+
+  int B[] = {1,2,4,8,16,32,64,128};
+  int m = 8;
+  s.resize(8);
+  std::copy(B, B+m, s.begin());
+
+  ret = algo_.threeSumClosest(s, 82);
+  ensure( 82==ret );
+  
+
+}
+
 
 
 }

@@ -6,6 +6,7 @@
 #include "Algo.h"
 
 #define log(x) std::cerr <<"[Alog] " <<x <<std::endl;
+
 int Algo::climbStairs(int n)
 {
   int f1 = 1;
@@ -221,4 +222,47 @@ int Algo::minimumTotal(std::vector<std::vector<int> > &triangle)
   }
 
   return buf[0];
+}
+
+int Algo::threeSumClosest(std::vector<int> &num, int target)
+{
+  if( num.size()<3 )
+    return 0;
+
+  std::sort(num.begin(), num.end());
+
+  int closest = INT_MAX;
+
+  for( int n = num.size()-1; n>=2; n--)
+  {
+    int closeTarget = target - num[n];
+
+    int i = 0;
+    int j = n-1;
+
+    while( i<j )
+    {
+      int twoSum = num[i] + num[j];
+    
+      if( twoSum == closeTarget )
+        return target;
+
+      int diff = twoSum - closeTarget;
+      if( std::abs(diff)<std::abs(closest) )
+      {
+        closest = diff;
+      }
+      
+      if( twoSum<closeTarget )
+      {
+        i++;
+      }
+      else
+      {
+        j--;
+      }
+    }
+  }
+
+  return target+closest;
 }

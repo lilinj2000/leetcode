@@ -18,4 +18,6 @@ public:
   int maxProfitII(std::vector<int> &prices);
 
   int minimumTotal(std::vector<std::vector<int> > &triangle);
+
+  int threeSumClosest(std::vector<int> &num, int target);
 };
