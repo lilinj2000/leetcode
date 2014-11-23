@@ -159,6 +159,29 @@ std::vector<std::vector<int> > Tree::levelOrderBottom(TreeNode *root)
   return res;
 }
 
+void Tree::flatten(TreeNode *root)
+{
+  if( !root )
+    return;
+
+  if( root->left )
+  {
+    TreeNode* leftNode = root->left;
+    TreeNode* rightNode = root->right;
+
+    root->right = leftNode;
+    root->left = NULL;
+
+    TreeNode* p = leftNode;
+    while( p->right )
+      p = p->right;
+
+    p->right = rightNode;
+  }
+
+  flatten(root->right);
+}
+
 void Tree::connect(TreeLinkNode* root)
 {
   if( !root )

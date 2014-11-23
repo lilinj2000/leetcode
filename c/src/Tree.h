@@ -47,6 +47,8 @@ public:
   
   std::vector<std::vector<int> > levelOrderBottom(TreeNode *root);
 
+  void flatten(TreeNode *root);
+
   void connect(TreeLinkNode* root);
 private:
 

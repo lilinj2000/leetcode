@@ -258,9 +258,44 @@ void object::test<8>()
   ensure( NULL==root.next );
   ensure( &node3==node2.next );
   ensure( NULL==node3.next );
-
 }
 
+
+/**
+ * Checks flatten
+ */
+template<>
+template<>
+void object::test<9>()
+{
+
+  tree_.flatten(&root);
+
+  ensure( NULL==root.left );
+  ensure( NULL==node1.left );
+  ensure( NULL==node2.left );
+  ensure( NULL==node3.left );
+  ensure( NULL==node4.left );
+  ensure( NULL==node5.left );
+  ensure( NULL==node6.left );
+  ensure( NULL==node7.left );
+
+  // root -> node1, node2
+  // node1 -> node3
+  // node2 -> node4, node5
+  // node4 -> node6
+  // node6 -> node7
+
+  ensure( &node1==root.right );
+  ensure( &node3==node1.right );
+  ensure( &node2==node3.right );
+  ensure( &node4==node2.right );
+  ensure( &node6==node4.right );
+  ensure( &node7==node6.right );
+  ensure( &node5==node7.right );
+  ensure( NULL==node5.right );
+
+}
 
 
 }
