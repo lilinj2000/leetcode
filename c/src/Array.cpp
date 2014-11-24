@@ -121,3 +121,37 @@ std::vector<int> Array::plusOne(std::vector<int> &digits)
 
   return digits;
 }
+
+int Array::findMin(std::vector<int> &num)
+{
+  if( num.empty() )
+    return 0;
+
+  if( num.size()<2 )
+    return num[0];
+
+  int low = 0;
+  int high = num.size()-1;
+
+  while( low<high )
+  {
+    int mid = (low+high)/2;
+
+    if( num[low]<=num[mid] && num[mid]<=num[high] )
+      return num[low];
+
+    if( low+1==high )
+      return num[high];
+
+    if( num[mid]<=num[high] )
+    {
+      high = mid;
+    }
+    else
+    {
+      low = mid;
+    }
+  }
+
+  return 0;
+}

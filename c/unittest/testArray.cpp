@@ -201,7 +201,29 @@ void object::test<5>()
   {
     ensure( resDigits[i]==expDigits[i] );
   }
-  
+}
+
+/**
+ * Check findMin for the rotated array
+ */
+template<>
+template<>
+void object::test<6>()
+{
+  std::vector<int> emptyVec;
+  ensure ( 0==array_.findMin(emptyVec) );
+
+  int A[] = {4, 5, 6, 7, 0, 1, 2};
+  std::vector<int> num;
+  num.resize(7);
+  std::copy(A, A+7, num.begin());
+
+  ensure( 0==array_.findMin(num) );
+
+  int B[] = {3, 1, 2};
+  num.resize(3);
+  std::copy(B, B+3, num.begin());
+  ensure( 1==array_.findMin(num) );
 }
 
 
