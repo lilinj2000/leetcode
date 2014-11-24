@@ -88,7 +88,7 @@ void object::test<3>()
 }
 
 /**
- * Check twosum
+ * Check twoSum
  */
 template<>
 template<>
@@ -97,7 +97,7 @@ void object::test<4>()
   std::vector<std::vector<int> > res;
   std::vector<int> s;
 
-  res = algo_.twosum(s, 0, 0);
+  res = algo_.twoSum(s, 0, 0);
   ensure( res.empty() );
 
   s.push_back(-1);
@@ -107,7 +107,7 @@ void object::test<4>()
   s.push_back(-1);
   s.push_back(0);
 
-  res = algo_.twosum(s, s.size(), -5);
+  res = algo_.twoSum(s, -5);
   ensure( 2==res.size() );
 
 }
@@ -122,7 +122,7 @@ void object::test<5>()
   std::vector<std::vector<int> > res;
   std::vector<int> s;
 
-  res = algo_.threesum(s, 0);
+  res = algo_.threeSum(s, 0);
   ensure( res.empty() );
 
   s.push_back(-1);
@@ -134,7 +134,7 @@ void object::test<5>()
   s.push_back(-6);
   s.push_back(1);
 
-  res = algo_.threesum(s, -5);
+  res = algo_.threeSum(s, -5);
   // std::cerr <<"res size is " <<res.size() <<std::endl;
   // for( unsigned i=0; i<res.size(); i++)
   // {
@@ -147,7 +147,7 @@ void object::test<5>()
   s.push_back(0);
   s.push_back(0);
   s.push_back(0);
-  res = algo_.threesum(s, 0);
+  res = algo_.threeSum(s, 0);
   ensure( 1==res.size() );
 
 }
@@ -264,9 +264,29 @@ void object::test<9>()
   ret = algo_.threeSumClosest(s, 82);
   ensure( 82==ret );
   
-
 }
 
+
+/**
+ * Check fourSum
+ */
+template<>
+template<>
+void object::test<10>()
+{
+  std::vector<std::vector<int> > res;
+  std::vector<int> s;
+
+  res = algo_.fourSum(s, 0);
+  ensure( res.empty() );
+
+  int A[] = {1, 0, -1, 0, -2, 2};
+  s.resize(6);
+  std::copy(A, A+6, s.begin());
+
+  res = algo_.fourSum(s, 0);
+  ensure( 3==res.size() );
+}
 
 
 }

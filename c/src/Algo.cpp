@@ -80,18 +80,29 @@ std::vector<std::vector<int> > Algo::subsets(std::vector<int> &s)
   return res;
 }
 
-std::vector<std::vector<int> > Algo::twosum(std::vector<int> &num, int len, int target)
+std::vector<std::vector<int> > Algo::twoSum(std::vector<int> &num, int target)
+{
+  std::vector<std::vector<int> > res;
+
+  if( num.size()<2 )
+    return res;
+
+  std::sort(num.begin(), num.end());
+
+  res = twoSum(num, num.size(), target);
+
+  return res;
+}
+
+std::vector<std::vector<int> > Algo::twoSum(std::vector<int> &num, int len, int target)
 {
   assert( len<=num.size() );
 
-  std::sort(num.begin(), num.begin()+len);
-  
   std::vector<std::vector<int> > res;
 
   if( len<2 )
     return res;
 
-  
   int begin = 0;
   int end = len - 1;
 
@@ -127,7 +138,8 @@ std::vector<std::vector<int> > Algo::twosum(std::vector<int> &num, int len, int 
   return res;
 }
 
-std::vector<std::vector<int> > Algo::threesum(std::vector<int> &num, int target)
+
+std::vector<std::vector<int> > Algo::threeSum(std::vector<int> &num, int target)
 {
   std::vector<std::vector<int> > res;
 
@@ -136,15 +148,29 @@ std::vector<std::vector<int> > Algo::threesum(std::vector<int> &num, int target)
 
   std::sort(num.begin(), num.end());
 
-  for(unsigned i=num.size()-1; i>=2; i--)
+  res = threeSum(num, num.size(), target);
+
+  return res;
+}
+
+std::vector<std::vector<int> > Algo::threeSum(std::vector<int> &num, int len, int target)
+{
+  std::vector<std::vector<int> > res;
+  
+  assert( len<=num.size() );
+
+  if( len<3 )
+    return res;
+  
+  for(unsigned i=len-1; i>=2; i--)
   {
 
-    if( i<num.size()-1 && num[i]==num[i+1] )
+    if( i<len-1 && num[i]==num[i+1] )
       continue;
            
     int twoTarget = target - num[i];
 
-    std::vector<std::vector<int> > twoRes = twosum(num, i, twoTarget);
+    std::vector<std::vector<int> > twoRes = twoSum(num, i, twoTarget);
 
     for(unsigned j=0; j<twoRes.size(); j++)
     {
@@ -155,6 +181,37 @@ std::vector<std::vector<int> > Algo::threesum(std::vector<int> &num, int target)
   }
 
   return res;
+}
+
+std::vector<std::vector<int> > Algo::fourSum(std::vector<int> &num, int target)
+{
+  std::vector<std::vector<int> > res;
+
+  if( num.size()<4 )
+    return res;
+
+  std::sort(num.begin(), num.end());
+
+  for(unsigned i=num.size()-1; i>=3; i--)
+  {
+
+    if( i<num.size()-1 && num[i]==num[i+1] )
+      continue;
+           
+    int threeTarget = target - num[i];
+
+    std::vector<std::vector<int> > threeRes = threeSum(num, i, threeTarget);
+
+    for(unsigned j=0; j<threeRes.size(); j++)
+    {
+      threeRes[j].push_back(num[i]);
+
+      res.push_back(threeRes[j]);
+    }
+  }
+
+  return res;
+
 }
 
 int Algo::maxProfit(std::vector<int> &prices)

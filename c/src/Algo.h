@@ -8,10 +8,16 @@ public:
   bool isValidSudoku(std::vector<std::vector<char> > &board);
 
   std::vector<std::vector<int> > subsets(std::vector<int> &s);
+  
+  std::vector<std::vector<int> > twoSum(std::vector<int> &num, int target);
+  
+  std::vector<std::vector<int> > twoSum(std::vector<int> &num, int len, int target);
 
-  std::vector<std::vector<int> > twosum(std::vector<int> &num, int end, int target);
+  std::vector<std::vector<int> > threeSum(std::vector<int> &num, int target);
 
-  std::vector<std::vector<int> > threesum(std::vector<int> &num, int target);
+  std::vector<std::vector<int> > threeSum(std::vector<int> &num, int len, int target);
+
+  std::vector<std::vector<int> > fourSum(std::vector<int> &num, int target);
 
   int maxProfit(std::vector<int> &prices);
 
