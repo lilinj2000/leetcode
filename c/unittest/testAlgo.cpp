@@ -288,6 +288,57 @@ void object::test<10>()
   ensure( 3==res.size() );
 }
 
+/**
+ * Check word search
+ */
+template<>
+template<>
+void object::test<11>()
+{
+  std::vector<std::vector<char> > board;
+  std::string word;
+  
+  ensure( !algo_.exist(board, word) );
+
+  char A[] = {'A', 'B', 'C', 'E'};
+  char B[] = {'S', 'F', 'C', 'S'};
+  char C[] = {'A', 'D', 'E', 'E'};
+  std::vector<char> vecStr;
+  vecStr.resize(4);
+  std::copy(A, A+4, vecStr.begin());
+  board.push_back(vecStr);
+
+  std::copy(B, B+4, vecStr.begin());
+  board.push_back(vecStr);
+
+  std::copy(C, C+4, vecStr.begin());
+  board.push_back(vecStr);
+
+  word = "ABCCED";
+  ensure( algo_.exist(board, word) );
+
+  word = "SEE";
+  ensure( algo_.exist(board, word) );
+
+  word = "ABCB";
+  ensure( !algo_.exist(board, word) );
+
+  // char A[] = {'A', 'B', 'C', 'E'};
+  char D[] = {'S', 'F', 'E', 'S'};
+  // char C[] = {'A', 'D', 'E', 'E'};
+  board.clear();
+  std::copy(A, A+4, vecStr.begin());
+  board.push_back(vecStr);
+  std::copy(D, D+4, vecStr.begin());
+  board.push_back(vecStr);
+  std::copy(C, C+4, vecStr.begin());
+  board.push_back(vecStr);
+  word = "ABCESEEEFS";
+  ensure( algo_.exist(board, word) );
+}
+  
+
+
 
 }
 

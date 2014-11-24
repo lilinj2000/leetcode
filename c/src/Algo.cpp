@@ -323,3 +323,48 @@ int Algo::threeSumClosest(std::vector<int> &num, int target)
 
   return target+closest;
 }
+
+bool Algo::find(std::vector<std::vector<char> > board, int i, int j, std::string & word, int idx)
+{
+  if( idx==word.size() )
+    return true;
+
+  if( 0<=i && i<board.size()
+      && 0<=j && j<board[i].size()
+      && board[i][j]==word[idx] )
+  {
+    // log( "[" <<i <<"," <<j <<"] " <<board[i][j]);
+    board[i][j] = '#';
+    idx++;
+
+    return find(board, i+1, j, word, idx)
+        || find(board, i-1, j, word, idx)
+        || find(board, i, j+1, word, idx)
+        || find(board, i, j-1, word, idx) ;
+  }
+
+  return false;
+}
+
+bool Algo::exist(std::vector<std::vector<char> > &board, std::string word)
+{
+  if( word.empty() || board.empty() )
+    return false;
+
+  for(unsigned i=0; i<board.size(); i++)
+  {
+    for(unsigned j=0; j<board[i].size(); j++)
+    {
+      if( board[i][j]==word[0] )
+      {
+        std::vector<std::vector<char> > tmpBoard(board);
+        if( find(tmpBoard, i, j, word, 0) )
+        {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}

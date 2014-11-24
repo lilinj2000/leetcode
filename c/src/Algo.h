@@ -26,4 +26,11 @@ public:
   int minimumTotal(std::vector<std::vector<int> > &triangle);
 
   int threeSumClosest(std::vector<int> &num, int target);
+
+  bool find(std::vector<std::vector<char> > board, int i, int j, std::string & word, int idx);
+
+  /**
+   * word search
+   */
+  bool exist(std::vector<std::vector<char> > &board, std::string word);
 };
