@@ -29,16 +29,18 @@ struct tree_basic
   
   virtual ~tree_basic() { }
 
-  Tree tree;
+  Tree tree_;
 
-  Tree::TreeNode root;
-  Tree::TreeNode node1;
-  Tree::TreeNode node2;
-  Tree::TreeNode node3;
-  Tree::TreeNode node4;
-  Tree::TreeNode node5;
-  Tree::TreeNode node6;
-  Tree::TreeNode node7;
+  TreeNode root;
+  TreeNode node1;
+  TreeNode node2;
+  TreeNode node3;
+  TreeNode node4;
+  TreeNode node5;
+  TreeNode node6;
+  TreeNode node7;
+
+  
 };
 
 typedef test_group<tree_basic> factory;
@@ -61,10 +63,10 @@ template<>
 template<>
 void object::test<1>()
 {
-  Tree::TreeNode *p = NULL;
-  Tree::TreeNode *q = NULL;
+  TreeNode *p = NULL;
+  TreeNode *q = NULL;
   
-  ensure(tree.isSameTree(p, q));
+  ensure(tree_.isSameTree(p, q));
 }
 
 /**
@@ -74,15 +76,15 @@ template<>
 template<>
 void object::test<2>()
 {
-  ensure(!tree.hasPathSum(NULL, 16));
+  ensure(!tree_.hasPathSum(NULL, 16));
   
   // root -> node2 -> node5
-  ensure(tree.hasPathSum(&root, 26));
+  ensure(tree_.hasPathSum(&root, 26));
 
   // root -> node1 -> node3
-  ensure(tree.hasPathSum(&root, 55));
+  ensure(tree_.hasPathSum(&root, 55));
 
-  ensure(!tree.hasPathSum(&root, 3000));
+  ensure(!tree_.hasPathSum(&root, 3000));
 
 }
 
@@ -93,12 +95,12 @@ template<>
 template<>
 void object::test<3>()
 {
-  ensure( 0==tree.minDepth(NULL) );
+  ensure( 0==tree_.minDepth(NULL) );
 
-  ensure(3==tree.minDepth(&root));
+  ensure(3==tree_.minDepth(&root));
 
   // node1 -> node3
-  ensure(2==tree.minDepth(&node1));
+  ensure(2==tree_.minDepth(&node1));
 
 }
 
@@ -109,17 +111,17 @@ template<>
 template<>
 void object::test<4>()
 {
-  ensure( tree.isBalanced(NULL) );
+  ensure( tree_.isBalanced(NULL) );
   
-  ensure( !tree.isBalanced(&root));
+  ensure( !tree_.isBalanced(&root));
 
   // node1 -> node3
-  ensure( tree.isBalanced(&node1));
+  ensure( tree_.isBalanced(&node1));
 
   // node2 -> node4, node5
   // node4 -> node6
   // node6 -> node7
-  ensure( !tree.isBalanced(&node2));
+  ensure( !tree_.isBalanced(&node2));
 }
 
 /**
@@ -130,7 +132,7 @@ template<>
 void object::test<5>()
 {
   std::vector<std::vector<int> > result;
-  result = tree.levelOrder(NULL);
+  result = tree_.levelOrder(NULL);
   ensure( result.empty() );
 
   // root -> node1, node2
@@ -139,7 +141,7 @@ void object::test<5>()
   // node4 -> node6
   // node6 -> node7
 
-  result = tree.levelOrder(&root);
+  result = tree_.levelOrder(&root);
   ensure( 5==result.size() );
   int level = 1;
   ensure( 1==result[level-1].size()
@@ -174,7 +176,7 @@ template<>
 void object::test<6>()
 {
   std::vector<std::vector<int> > result;
-  result = tree.levelOrderBottom(NULL);
+  result = tree_.levelOrderBottom(NULL);
   ensure( result.empty() );
 
   // root -> node1, node2
@@ -183,7 +185,7 @@ void object::test<6>()
   // node4 -> node6
   // node6 -> node7
 
-  result = tree.levelOrderBottom(&root);
+  result = tree_.levelOrderBottom(&root);
   ensure( 5==result.size() );
   
   int level = 1;
@@ -219,14 +221,80 @@ template<>
 template<>
 void object::test<7>()
 {
-  ensure( 0==tree.maxDepth(NULL) );
+  ensure( 0==tree_.maxDepth(NULL) );
 
-  ensure( 5==tree.maxDepth(&root) );
+  ensure( 5==tree_.maxDepth(&root) );
 
   // node1 -> node3
-  ensure( 2==tree.maxDepth(&node1) );
+  ensure( 2==tree_.maxDepth(&node1) );
 
-  ensure( 4==tree.maxDepth(&node2) );
+  ensure( 4==tree_.maxDepth(&node2) );
+}
+
+/**
+ * Checks TreeLinkNode connect
+ */
+template<>
+template<>
+void object::test<8>()
+{
+  TreeLinkNode root;
+  TreeLinkNode node2;
+  TreeLinkNode node3;
+  TreeLinkNode node4;
+  TreeLinkNode node5;
+  TreeLinkNode node6;
+  TreeLinkNode node7;
+
+  root.left = &node2;
+  root.right = &node3;
+  node2.left = &node4;
+  node2.right = &node5;
+  node3.left = &node6;
+  node3.right = &node7;
+
+  tree_.connect(&root);
+
+  ensure( NULL==root.next );
+  ensure( &node3==node2.next );
+  ensure( NULL==node3.next );
+}
+
+
+/**
+ * Checks flatten
+ */
+template<>
+template<>
+void object::test<9>()
+{
+
+  tree_.flatten(&root);
+
+  ensure( NULL==root.left );
+  ensure( NULL==node1.left );
+  ensure( NULL==node2.left );
+  ensure( NULL==node3.left );
+  ensure( NULL==node4.left );
+  ensure( NULL==node5.left );
+  ensure( NULL==node6.left );
+  ensure( NULL==node7.left );
+
+  // root -> node1, node2
+  // node1 -> node3
+  // node2 -> node4, node5
+  // node4 -> node6
+  // node6 -> node7
+
+  ensure( &node1==root.right );
+  ensure( &node3==node1.right );
+  ensure( &node2==node3.right );
+  ensure( &node4==node2.right );
+  ensure( &node6==node4.right );
+  ensure( &node7==node6.right );
+  ensure( &node5==node7.right );
+  ensure( NULL==node5.right );
+
 }
 
 

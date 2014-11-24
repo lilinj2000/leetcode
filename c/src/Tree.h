@@ -11,16 +11,27 @@
 #include <cstddef>
 #include <vector>
 
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  
+ TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+struct TreeLinkNode {
+  TreeLinkNode *left;
+  TreeLinkNode *right;
+  TreeLinkNode *next;
+
+ TreeLinkNode(): left(NULL), right(NULL), next(NULL)
+  {
+  }
+};
+  
 class Tree
 {
 public:
-  struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-  
-   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-  };
   
   bool isSameTree(TreeNode *p, TreeNode *q);
 
@@ -35,6 +46,10 @@ public:
   std::vector<std::vector<int> > levelOrder(TreeNode *root);
   
   std::vector<std::vector<int> > levelOrderBottom(TreeNode *root);
+
+  void flatten(TreeNode *root);
+
+  void connect(TreeLinkNode* root);
 private:
 
   int depth(TreeNode *root);
