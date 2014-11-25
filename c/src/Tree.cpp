@@ -200,3 +200,37 @@ void Tree::connect(TreeLinkNode* root)
   connect(root->left);
   connect(root->right);
 }
+
+std::vector<std::vector<int> > Tree::pathSum(TreeNode *root, int sum)
+{
+  std::vector<std::vector<int> > res;
+  if( !root )
+    return res;
+
+  std::vector<int> path;
+  pathSum(root, sum, path, res);
+
+  return res;
+}
+
+void Tree::pathSum(TreeNode *root, int sum, std::vector<int>& path, std::vector<std::vector<int> >& res)
+{
+  if( !root )
+    return;
+
+  path.push_back(root->val);
+  if( root->left==NULL && root->right==NULL && root->val==sum)
+  {
+      res.push_back(path);
+  }
+
+  int leftSum = sum - root->val;
+
+  if( root->left )
+    pathSum(root->left, leftSum, path, res);
+
+  if( root->right )
+    pathSum(root->right, leftSum, path, res);
+
+  path.pop_back();
+}

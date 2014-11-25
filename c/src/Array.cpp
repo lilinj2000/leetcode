@@ -199,7 +199,7 @@ int Array::evalRPN(std::vector<std::string> &tokens)
       theStack.push( std::atoi(tokens[i].data()) );
     }
 
-    log( "the top value is " <<theStack.top() );
+    // log( "the top value is " <<theStack.top() );
   }
 
   if( theStack.empty() )

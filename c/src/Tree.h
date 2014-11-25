@@ -50,7 +50,12 @@ public:
   void flatten(TreeNode *root);
 
   void connect(TreeLinkNode* root);
+
+  std::vector<std::vector<int> > pathSum(TreeNode *root, int sum);
+  
 private:
 
   int depth(TreeNode *root);
+
+  void pathSum(TreeNode *root, int sum, std::vector<int>& path, std::vector<std::vector<int> >& res);
 };

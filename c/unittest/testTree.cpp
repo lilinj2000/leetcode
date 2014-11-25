@@ -12,6 +12,11 @@ struct tree_basic
                node4(10), node5(20),
                node6(100), node7(200)
   {
+     //         2(root)
+     //     3(1)     4(2)
+     // 50(3)      10(4)      20(5)
+     //       100(6)
+     //     200(7)
     // root -> node1, node2
     // node1 -> node3
     // node2 -> node4, node5
@@ -295,6 +300,34 @@ void object::test<9>()
   ensure( &node5==node7.right );
   ensure( NULL==node5.right );
 
+}
+
+/**
+ * Checks pathSum II
+ */
+template<>
+template<>
+void object::test<10>()
+{
+  //         2(root)
+  //     3(1)     4(2)
+  // 50(3)      10(4)      20(5)
+  //       100(6)
+  //     200(7)
+  // root -> node1, node2
+  // node1 -> node3
+  // node2 -> node4, node5
+  // node4 -> node6
+  // node6 -> node7
+
+  std::vector<std::vector<int> > res;
+  res = tree_.pathSum(&root, 316);
+  ensure( 1==res.size() );
+  int A[] = {2, 4, 10, 100, 200};
+  std::vector<int> exp;
+  exp.resize(5);
+  std::copy(A, A+5, exp.begin());
+  ensure( exp==res[0] );
 }
 
 
