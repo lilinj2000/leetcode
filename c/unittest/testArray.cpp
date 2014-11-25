@@ -226,6 +226,32 @@ void object::test<6>()
   ensure( 1==array_.findMin(num) );
 }
 
+/**
+ * Check realRPN
+ */
+template<>
+template<>
+void object::test<7>()
+{
+  std::vector<std::string> tokens;
+  tokens.push_back("2");
+  tokens.push_back("1");
+  tokens.push_back("+");
+  tokens.push_back("3");
+  tokens.push_back("*");
+  ensure( 9==array_.evalRPN(tokens) );
+
+  tokens.clear();
+  tokens.push_back("4");
+  tokens.push_back("13");
+  tokens.push_back("5");
+  tokens.push_back("/");
+  tokens.push_back("+");
+  ensure( 6==array_.evalRPN(tokens) );
+
+
+}
+
 
 
 }

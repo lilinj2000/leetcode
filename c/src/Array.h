@@ -15,4 +15,6 @@ public:
   std::vector<int> plusOne(std::vector<int> &digits);
 
   int findMin(std::vector<int> &num);
+
+  int evalRPN(std::vector<std::string> &tokens);
 };

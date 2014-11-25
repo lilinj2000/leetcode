@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stack>
+#include <cstdlib>
 #include "Array.h"
 
 #define log(x) std::cerr <<"[Array] " <<x <<std::endl;
@@ -154,4 +156,55 @@ int Array::findMin(std::vector<int> &num)
   }
 
   return 0;
+}
+
+int Array::evalRPN(std::vector<std::string> &tokens)
+{
+  
+  std::stack<int> theStack;
+  
+  for(unsigned i=0; i<tokens.size(); i++)
+  {
+    if( tokens[i]=="+" || tokens[i]=="-"
+        || tokens[i]=="*" || tokens[i]=="/" )
+    {
+      int rightValue = 0;
+      if( !theStack.empty() )
+      {
+        rightValue = theStack.top();
+        theStack.pop();
+      }
+    
+      int leftValue = 0;
+      if( !theStack.empty() )
+      {
+        leftValue = theStack.top();
+        theStack.pop();
+      }
+
+      if( tokens[i]=="+" )
+        theStack.push( leftValue + rightValue );
+      else if( tokens[i]=="-" )
+        theStack.push( leftValue - rightValue );
+      else if( tokens[i]=="*" )
+        theStack.push( leftValue * rightValue );
+      else if( tokens[i]=="/" )
+      {
+        if( rightValue!=0 )
+          theStack.push( leftValue / rightValue );
+      }
+    }
+    else
+    {
+      theStack.push( std::atoi(tokens[i].data()) );
+    }
+
+    log( "the top value is " <<theStack.top() );
+  }
+
+  if( theStack.empty() )
+    return 0;
+  else
+    return theStack.top();
+
 }
