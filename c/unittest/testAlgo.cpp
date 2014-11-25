@@ -335,6 +335,22 @@ void object::test<11>()
   board.push_back(vecStr);
   word = "ABCESEEEFS";
   ensure( algo_.exist(board, word) );
+
+  // ["aaaa","aaaa","aaaa","aaaa","aaab"], "aaaaaaaaaaaaaaaaaaaa"
+  char E[] = {'a', 'a', 'a', 'a'};
+  char F[] = {'a', 'a', 'a', 'b'};
+  board.clear();
+  std::copy(E, E+4, vecStr.begin());
+  board.push_back(vecStr);
+  board.push_back(vecStr);
+  board.push_back(vecStr);
+  board.push_back(vecStr);
+  std::copy(F, F+4, vecStr.begin());
+  board.push_back(vecStr);
+  word = "aaaaaaaaaaaaaaaaaaaa";
+  ensure( !algo_.exist(board, word) );
+
+      
 }
   
 
