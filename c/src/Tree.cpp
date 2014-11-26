@@ -247,6 +247,8 @@ TreeNode* Tree::sortedListToBST(ListNode* head)
     vecData.push_back(p->val);
 
   root = sortedListToBST(vecData, 0, vecData.size()-1);
+
+  return root;
 }
 
 TreeNode* Tree::sortedListToBST(std::vector<int>& data, int start, int end)
@@ -254,8 +256,10 @@ TreeNode* Tree::sortedListToBST(std::vector<int>& data, int start, int end)
   if( start>end )
     return NULL;
   
-  int mid = (start+end)/2;
+  int mid = start + (end - start)/2;
 
+  // log( "mid is " <<mid <<" the value is " <<data[mid] );
+  
   TreeNode* node = new TreeNode(data[mid]);
 
   node->left = sortedListToBST(data, start, mid-1);

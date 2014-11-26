@@ -1,6 +1,7 @@
 #include <tut/tut.hpp>
-#include "Tree.h"
 
+#include "Tree.h"
+#include "utility.h"
 
 namespace tut
 {
@@ -337,7 +338,15 @@ template<>
 template<>
 void object::test<11>()
 {
+  int A[] = { 1, 2, 3, 4, 5};
+  ListNode* head = util->buildList(A, 5);
 
+  TreeNode* root = tree_.sortedListToBST(head);
+  ensure(3==root->val);
+  ensure(1==root->left->val);
+  ensure(2==root->left->right->val);
+  ensure(4==root->right->val);
+  ensure(5==root->right->right->val);
 }
 
 
