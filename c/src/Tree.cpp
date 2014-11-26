@@ -234,3 +234,33 @@ void Tree::pathSum(TreeNode *root, int sum, std::vector<int>& path, std::vector<
 
   path.pop_back();
 }
+
+TreeNode* Tree::sortedListToBST(ListNode* head)
+{
+  TreeNode* root = NULL;
+
+  if( !head )
+    return root;
+
+  std::vector<int> vecData;
+  for( ListNode* p=head; p; p=p->next )
+    vecData.push_back(p->val);
+
+  root = sortedListToBST(vecData, 0, vecData.size()-1);
+}
+
+TreeNode* Tree::sortedListToBST(std::vector<int>& data, int start, int end)
+{
+  if( start>end )
+    return NULL;
+  
+  int mid = (start+end)/2;
+
+  TreeNode* node = new TreeNode(data[mid]);
+
+  node->left = sortedListToBST(data, start, mid-1);
+
+  node->right = sortedListToBST(data, mid+1, end);
+
+  return node;
+}

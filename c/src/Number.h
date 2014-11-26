@@ -1,5 +1,8 @@
 #include <vector>
 
+#ifndef NUMBER_H
+#define NUMBER_H
+
 class Number
 {
 public:
@@ -11,3 +14,5 @@ public:
 
   std::vector<int> getRowPascalTriangle(int rowIndex);
 };
+
+#endif

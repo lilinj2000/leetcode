@@ -10,6 +10,10 @@
 
 #include <cstddef>
 #include <vector>
+#include "List.h"
+
+#ifndef TREE_H
+#define TREE_H
 
 struct TreeNode {
   int val;
@@ -52,10 +56,16 @@ public:
   void connect(TreeLinkNode* root);
 
   std::vector<std::vector<int> > pathSum(TreeNode *root, int sum);
+
+  TreeNode* sortedListToBST(ListNode* head);
   
 private:
 
   int depth(TreeNode *root);
 
   void pathSum(TreeNode *root, int sum, std::vector<int>& path, std::vector<std::vector<int> >& res);
+
+  TreeNode* sortedListToBST(std::vector<int>& data, int start, int end);
 };
+
+#endif

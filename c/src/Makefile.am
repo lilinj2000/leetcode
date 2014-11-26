@@ -7,7 +7,8 @@ libleetcode_a_SOURCES = Tree.cpp \
 			MinStack.cpp \
 			Array.cpp \
 			List.cpp \
-			Algo.cpp
+			Algo.cpp \
+			utility.cpp
 
 # header files
 include_HEADERS = Tree.h String.h Number.h MinStack.h

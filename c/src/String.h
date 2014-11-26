@@ -1,6 +1,9 @@
 #include <string>
 #include <vector>
 
+#ifndef STRING_H
+#define STRING_H
+
 class String
 {
 public:
@@ -33,3 +36,5 @@ public:
 
   std::string longestPalindrome(std::string s);
 };
+
+#endif

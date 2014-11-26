@@ -1,5 +1,8 @@
 #include <vector>
 
+#ifndef ARRAY_H
+#define ARRAY_H
+
 class Array
 {
 public:
@@ -18,3 +21,5 @@ public:
 
   int evalRPN(std::vector<std::string> &tokens);
 };
+
+#endif

@@ -1,6 +1,7 @@
 #include <tut/tut.hpp>
 
 #include "List.h"
+#include "utility.h"
 
 namespace tut
 {
@@ -13,55 +14,6 @@ struct list_basic
   
   virtual ~list_basic() { }
 
-  ListNode* buildList(int A[], int n)
-  {
-    ListNode* head = NULL;
-    ListNode* cur = NULL;
-    for(int i=0; i<n; i++)
-    {
-      ListNode* node = new ListNode(A[i]);
-
-      if( NULL==head )
-        head = node;
-
-      if( NULL!=cur )
-        cur->next = node;
-      
-      cur = node;
-    }
-
-    return head;
-  }
-
-  void freeList(ListNode* head)
-  {
-    while( NULL!=head )
-    {
-      ListNode* p = head;
-      head = head->next;
-
-      delete p;
-    }
-  }
-
-  bool sameList(ListNode* head, int A[], int n)
-  {
-    for(int i=0; i<n; i++)
-    {
-      // std::cerr <<A[i] <<" - " <<head->val <<std::endl;
-      
-      if( head && head->val==A[i] )
-      {
-        head = head->next;
-        
-        continue;
-      }
-
-      return false;
-    }
-
-    return head?false:true;
-  }
 
   List list_;
 
@@ -92,20 +44,20 @@ void object::test<1>()
   int A[] = {2, 3, 4, 50};
   int n = sizeof(A)/sizeof(int);
   
-  ListNode* head = buildList(A, n);
+  ListNode* head = util->buildList(A, n);
 
   // remove the 1st node from end
   ListNode* pHead = list_.removeNthFromEnd(head, 1);  // remove node3
   ensure( head==pHead );
-  ensure( sameList(pHead, A, n-1) );
+  ensure( util->sameList(pHead, A, n-1) );
 
   pHead = list_.removeNthFromEnd(pHead, 3);  // remove head
   int B[] = {3, 4};
-  ensure( sameList(pHead, B, 2) );
+  ensure( util->sameList(pHead, B, 2) );
 
   pHead = list_.removeNthFromEnd(pHead, 2);  // remove node1
   int C[] = {4};
-  ensure( sameList(pHead, C, 1) );
+  ensure( util->sameList(pHead, C, 1) );
     
   pHead = list_.removeNthFromEnd(pHead, 1);  // remove node2
   ensure( NULL==pHead );
@@ -123,14 +75,14 @@ void object::test<2>()
 
   int A[] = {2, 3, 3, 3};
   int n = 4;
-  ListNode* head = buildList(A, 4);
+  ListNode* head = util->buildList(A, 4);
 
   ListNode* pHead = list_.deleteDuplicates(head);
   ensure( head==pHead );
   int B[] = {2, 3};
-  ensure( sameList(pHead, B, 2) );
+  ensure( util->sameList(pHead, B, 2) );
 
-  freeList(pHead);
+  util->freeList(pHead);
 
 }
 
@@ -145,24 +97,24 @@ void object::test<3>()
 
   int A[] = {1, 2, 3, 4, 4, 5, 6, 7, 7};
   int n = sizeof(A)/sizeof(int);
-  ListNode* l1 = buildList(A, n);
+  ListNode* l1 = util->buildList(A, n);
 
   int B[] = {2, 3, 5, 7};
   int m = sizeof(B)/sizeof(int);
-  ListNode* l2 = buildList(B, m);
+  ListNode* l2 = util->buildList(B, m);
 
   ensure( l1==list_.mergeTwoLists(l1, NULL) );
-  ensure( sameList(l1, A, n) );
+  ensure( util->sameList(l1, A, n) );
 
   ensure( l2==list_.mergeTwoLists(NULL, l2) );
-  ensure( sameList(l2, B, m) );
+  ensure( util->sameList(l2, B, m) );
 
   ensure( l1==list_.mergeTwoLists(l1, l2) );
   int C[] = {1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 7, 7};
   int l = sizeof(C)/sizeof(int);
-  ensure( sameList(l1, C, l) );
+  ensure( util->sameList(l1, C, l) );
 
-  freeList(l1);
+  util->freeList(l1);
 }
 
 /**
@@ -176,28 +128,28 @@ void object::test<4>()
 
   int A[] = {2, 4, 3};
   int n = sizeof(A)/sizeof(int);
-  ListNode* l1 = buildList(A, n);
+  ListNode* l1 = util->buildList(A, n);
 
   int B[] = {5, 6, 4};
   int m = sizeof(B)/sizeof(int);
-  ListNode* l2 = buildList(B, m);
+  ListNode* l2 = util->buildList(B, m);
 
   int res[] = {7, 0, 8};
   ListNode* result = list_.addTwoNumbers(l1, l2);
-  ensure( sameList(result, res, 3) );
+  ensure( util->sameList(result, res, 3) );
 
   int C[] = {4, 4, 5, 9, 9, 9};
-  ListNode* l3 = buildList(C, 6);
+  ListNode* l3 = util->buildList(C, 6);
   ListNode* result2 = list_.addTwoNumbers(l2, l3);
 
   int res2[] = {9, 0, 0, 0, 0, 0, 1};
-  ensure( sameList(result2, res2, 7) );
+  ensure( util->sameList(result2, res2, 7) );
 
-  freeList(l1);
-  freeList(l2);
-  freeList(l3);
-  freeList(result);
-  freeList(result2);
+  util->freeList(l1);
+  util->freeList(l2);
+  util->freeList(l3);
+  util->freeList(result);
+  util->freeList(result2);
 }
 
 /**
@@ -211,13 +163,13 @@ void object::test<5>()
 
   int A[] = {2, 3, 6, 8, 4, 5, 9, 10, 7, 6};
   int n = sizeof(A)/sizeof(int);
-  ListNode* head = buildList(A, n);
+  ListNode* head = util->buildList(A, n);
 
   int B[] = {2, 3, 4, 5, 6, 6, 7, 8, 9, 10};
 
   ListNode* l1 = list_.sortList(head);
-  ensure( sameList(l1, B, n) );
-  freeList(l1);
+  ensure( util->sameList(l1, B, n) );
+  util->freeList(l1);
 }
 
 /**
@@ -231,21 +183,21 @@ void object::test<6>()
 
   int A[] = {2, 3, 6, 8, 4, 5, 9, 10, 7, 6};
   int n = sizeof(A)/sizeof(int);
-  ListNode* head = buildList(A, n);
+  ListNode* head = util->buildList(A, n);
 
   int B[] = {2, 3, 4, 5, 6, 6, 7, 8, 9, 10};
 
   ListNode* l1 = list_.insertionSortList(head);
-  ensure( sameList(l1, B, n) );
-  freeList(l1);
+  ensure( util->sameList(l1, B, n) );
+  util->freeList(l1);
 
 
   int C[] = { 2, 1 };
-  ListNode* l2 = buildList(C, 2);
+  ListNode* l2 = util->buildList(C, 2);
   ListNode* res_l2 = list_.insertionSortList(l2);
   int D[] = { 1, 2 };
-  ensure( sameList(res_l2, D, 2) );
-  freeList(res_l2);
+  ensure( util->sameList(res_l2, D, 2) );
+  util->freeList(res_l2);
   
 }
 

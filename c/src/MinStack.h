@@ -1,5 +1,8 @@
 #include <stack>
 
+#ifndef MIN_STACK_H
+#define MIN_STACK_H
+
 class MinStack
 {
 public:
@@ -16,3 +19,5 @@ private:
   std::stack<int> stack_;
   std::stack<int> min_stack_;
 };
+
+#endif

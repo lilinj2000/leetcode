@@ -1,5 +1,8 @@
 #include <vector>
 
+#ifndef ALGO_H
+#define ALGO_H
+
 class Algo
 {
 public:
@@ -35,3 +38,5 @@ public:
   bool exist(std::vector<std::vector<char> > &board, std::string word);
 
 };
+
+#endif

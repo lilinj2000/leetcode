@@ -5,7 +5,7 @@ AC_PREREQ([2.69])
 AC_INIT([leetcode],[0.1],[lilinj2000@163.com])
 #AC_CONFIG_SRCDIR([String.cpp])
 #AC_CONFIG_HEADERS([config.h])
-AM_INIT_AUTOMAKE(leetcode, 0.1)
+AM_INIT_AUTOMAKE
 
 # Checks for programs.
 AC_PROG_CXX

@@ -330,6 +330,16 @@ void object::test<10>()
   ensure( exp==res[0] );
 }
 
+/**
+ * Checks sortedListToBST
+ */
+template<>
+template<>
+void object::test<11>()
+{
+
+}
+
 
 }
 
