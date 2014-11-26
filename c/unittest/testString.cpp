@@ -369,5 +369,22 @@ void object::test<11>()
   ensure( 0==string_.lengthOfLastWord(NULL) );
 }
 
+/**
+ * Check longestPalindrome
+ */
+template<>
+template<>
+void object::test<12>()
+{
+  std::string s = "aaaaaaaaa";
+  ensure( s==string_.longestPalindrome(s) );
+
+  s = "cabcbabcbabcba";
+  std::string p = "abcbabcbabcba";
+  ensure( p==string_.longestPalindrome(s) );
+
+
+}
+
 }
 

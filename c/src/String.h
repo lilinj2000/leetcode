@@ -30,4 +30,6 @@ public:
   std::string addBinary(std::string a, std::string b);
 
   int lengthOfLastWord(const char *s);
+
+  std::string longestPalindrome(std::string s);
 };

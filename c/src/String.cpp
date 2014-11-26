@@ -457,3 +457,50 @@ int String::lengthOfLastWord(const char *s)
 
   return len;
 }
+
+std::string String::longestPalindrome(std::string s)
+{
+  if( s.length()<2 )
+    return s;
+
+  // build the preprocess string t
+  std::string t = "^";
+  for(unsigned i=0; i<s.length(); i++)
+  {
+    t += "#" + s.substr(i, 1);
+  }
+  t += "#$";
+
+  int n = t.length();
+  std::vector<int> p(n, 0);
+  int c=0, r=0;
+  for(int i=1; i<n-1; i++)
+  {
+    int ii = 2*c-i;
+
+    p[i] = (r>i) ? std::min(r-i, p[ii]) : 0;
+
+    while( t[i+1+p[i]]==t[i-1-p[i]] )
+      p[i]++;
+
+    if( i+p[i]>r )
+    {
+      c = i;
+      r = i+p[i];
+    }
+  }
+
+  // find the max element in p
+  int maxlen = 0;
+  int index = 0;
+  for(int i=1; i<n-1; i++)
+  {
+    if( p[i]>maxlen )
+    {
+      maxlen = p[i];
+      index = i;
+    }
+  }
+
+  return s.substr((index-1-maxlen)/2, maxlen);
+}
